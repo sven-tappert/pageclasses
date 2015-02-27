@@ -1,0 +1,3 @@
+plugin.tx_sventbodyclass_pi1 {
+	bodytagCssClass = {$plugin.tx_sventbodyclass_pi1.bodytagCssClass}
+}

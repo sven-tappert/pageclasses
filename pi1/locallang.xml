@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Strings for extension 'tx_sventbodyclass_pi1'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="test">Test</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="test">Test</label>
+		</languageKey>
+	</data>
+</T3locallang>
