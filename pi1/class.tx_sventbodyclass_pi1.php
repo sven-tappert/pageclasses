@@ -54,28 +54,46 @@ class tx_sventbodyclass_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 	public function main($content, $conf)	
 	{	
 		// init
-		$globalClasses = array();
 		$pageClasses = array();
+		$parentClasses = array();
 		
 		// get global class from ts config
 		if (isset($conf['bodytagCssClass'])) {
-			$globalClasses = GeneralUtility::trimExplode(' ', $conf['bodytagCssClass']);
+			foreach(GeneralUtility::trimExplode(' ', $conf['bodytagCssClass'], true) as $class)
+			{
+				$pageClasses[$class] = htmlspecialchars($class);
+			}
 		}
-
+		
+		
 		// step through rootline, to find inherited css classes
 		foreach ($GLOBALS['TSFE']->rootLine as $pid => $page) 
 		{
-			// current page, css classes are set
-			if (!empty($page['tx_sventbodyclass_css_classes']) && $page['uid'] == $GLOBALS['TSFE']->id) {
-				$pageClasses = array_merge(GeneralUtility::trimExplode(' ', $page['tx_sventbodyclass_css_classes']), $pageClasses);
+			// current page
+			if ($page['uid'] == $GLOBALS['TSFE']->id)
+			{
+				// current pages css classes are set - add them
+				if (!empty($page['tx_sventbodyclass_css_classes'])) 
+				{
+					foreach (GeneralUtility::trimExplode(' ', $page['tx_sventbodyclass_css_classes'], true) as $class)
+					{
+						$pageClasses[$class] = htmlspecialchars($class);
+					}
+				}
 			}
-			// current or parent page - inheritance is stopped
+			// collect classes from parent pages
+			else
+			{
+				// add dedicated subpages classes
+				foreach (GeneralUtility::trimExplode(' ', $page['tx_sventbodyclass_css_classes_subpages'], true) as $class)
+				{
+					$pageClasses[$class] = htmlspecialchars($class);
+				}
+			}
+			
+			// inheritance is stopped - exit here
 			if ($page['tx_sventbodyclass_stop_css_inheritance'] == 1) { break; }
 			
-			// parent page - inheritance is enabled and css class is set
-			if ($page['tx_sventbodyclass_pass_on_css'] == 1 && !empty($page['tx_sventbodyclass_css_classes'])) {
-				$pageClasses = array_merge(GeneralUtility::trimExplode(' ', $page['tx_sventbodyclass_css_classes']), $pageClasses);
-			}
 		}
 
 		// call hooks
@@ -83,13 +101,12 @@ class tx_sventbodyclass_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['svent_bodyclass']['bodytagCssHook'] as $_classRef) 
 			{
 				$_procObj = & GeneralUtility::getUserObj($_classRef);
-				$_procObj->processBodytagCssHook($this, $globalClasses, $pageClasses);
+				$_procObj->processBodytagCssHook($this, $pageClasses);
 			}
 		}
 		
 		// glue together all classes
-		$classes = array_merge($globalClasses, $pageClasses);
-		return empty($classes) ? '<body>' : '<body class="'.implode(' ', $classes).'">';
+		return empty($pageClasses) ? '<body>' : '<body class="'.trim(implode(' ', $pageClasses)).'">';
 	}
 }
 
