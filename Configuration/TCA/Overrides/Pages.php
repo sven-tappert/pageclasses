@@ -1,7 +1,7 @@
 <?php
 $tempColumns = array (
 	'tx_sventbodyclass_css_classes' => array (
-		'exclude' => 0,
+		'exclude' => 1,
 		'label' => 'LLL:EXT:svent_bodyclass/locallang_db.xml:pages.tx_sventbodyclass_css_classes',
 		'config' => array (
 			'type' => 'input',
@@ -11,7 +11,7 @@ $tempColumns = array (
 		)
 	),
 	'tx_sventbodyclass_css_classes_subpages' => array (
-		'exclude' => 0,
+		'exclude' => 1,
 		'label' => 'LLL:EXT:svent_bodyclass/locallang_db.xml:pages.tx_sventbodyclass_css_classes_subpages',
 		'config' => array (
 			'type' => 'input',
@@ -21,7 +21,7 @@ $tempColumns = array (
 		)
 	),
 // 	'tx_sventbodyclass_pass_on_css' => array (
-// 		'exclude' => 0,
+// 		'exclude' => 1,
 // 		'label' => 'LLL:EXT:svent_bodyclass/locallang_db.xml:pages.tx_sventbodyclass_pass_on_css',
 // 		'config' => array (
 // 			'type' => 'select',
@@ -42,7 +42,7 @@ $tempColumns = array (
 // 		),
 // 	),
 	'tx_sventbodyclass_stop_css_inheritance' => array (
-		'exclude' => 0,
+		'exclude' => 1,
 		'label' => 'LLL:EXT:svent_bodyclass/locallang_db.xml:pages.tx_sventbodyclass_stop_css_inheritance',
 		'config' => array (
 			'type' => 'check',
