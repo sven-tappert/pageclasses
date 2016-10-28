@@ -2,28 +2,20 @@
 <T3locallang>
 	<meta type="array">
 		<type>database</type>
-		<description>Language labels for database tables/fields belonging to extension 'svent_bodyclass'</description>
+		<description>Language labels for database tables/fields belonging to extension 'pageclasses'</description>
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="pages.tx_sventbodyclass_css_palette">Body Tag CSS</label>
-			<label index="pages.tx_sventbodyclass_css_classes">BodyTag CSS Classes</label>
-			<label index="pages.tx_sventbodyclass_css_classes_subpages">BodyTag CSS Classes for Subpages</label>
-<!-- 			<label index="pages.tx_sventbodyclass_pass_on_css">Inherit CSS classes to child pages (recursive)</label> -->
-<!-- 			<label index="pages.tx_sventbodyclass_pass_on_css.inherit">as defined on parent page</label> -->
-<!-- 			<label index="pages.tx_sventbodyclass_pass_on_css.enable">inherit to subpages</label> -->
-<!-- 			<label index="pages.tx_sventbodyclass_pass_on_css.disable">don't inherit to subpages</label> -->
-			<label index="pages.tx_sventbodyclass_stop_css_inheritance">Don't inherit CSS class from parent</label>
+			<label index="pages.tx_pageclasses_css_palette">Body Tag CSS</label>
+			<label index="pages.tx_pageclasses_css_classes">BodyTag CSS Classes</label>
+			<label index="pages.tx_pageclasses_css_classes_subpages">BodyTag CSS Classes for Subpages</label>
+			<label index="pages.tx_pageclasses_stop_css_inheritance">Don't inherit CSS class from parent</label>
 		</languageKey>
 		<languageKey index="de" type="array">
-			<label index="pages.tx_sventbodyclass_css_palette">Body-Tag CSS</label>
-			<label index="pages.tx_sventbodyclass_css_classes">Body-Tag CSS Klassen</label>
-			<label index="pages.tx_sventbodyclass_css_classes_subpages">BodyTag CSS Klassen der Unterseiten</label>
-<!-- 			<label index="pages.tx_sventbodyclass_pass_on_css">CSS Klassen weitervererben</label> -->
-<!-- 			<label index="pages.tx_sventbodyclass_pass_on_css.inherit">Einstellung von Elternseite übernehmen</label> -->
-<!-- 			<label index="pages.tx_sventbodyclass_pass_on_css.enable">weitervererben</label> -->
-<!-- 			<label index="pages.tx_sventbodyclass_pass_on_css.disable">nicht weitervererben</label> -->
-			<label index="pages.tx_sventbodyclass_stop_css_inheritance">CSS Klasse nicht von Elternseiten erben</label>
+			<label index="pages.tx_pageclasses_css_palette">Body-Tag CSS</label>
+			<label index="pages.tx_pageclasses_css_classes">Body-Tag CSS Klassen</label>
+			<label index="pages.tx_pageclasses_css_classes_subpages">BodyTag CSS Klassen der Unterseiten</label>
+			<label index="pages.tx_pageclasses_stop_css_inheritance">CSS Klasse nicht von Elternseiten erben</label>
 		</languageKey>
 	</data>
 </T3locallang>

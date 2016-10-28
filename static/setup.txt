@@ -1,3 +1,5 @@
-plugin.tx_sventbodyclass_pi1 {
-	bodytagCssClass = {$plugin.tx_sventbodyclass_pi1.bodytagCssClass}
+plugin.tx_pageclasses_pi1 {
+	defaultCssClass  = {$plugin.tx_pageclasses_pi1.defaultCssClass}
+	addFrontendLayoutClass = {$plugin.tx_pageclasses_pi1.addFrontendLayoutClass}
+	addBackendLayoutClass  = {$plugin.tx_pageclasses_pi1.addBackendLayoutClass}
 }

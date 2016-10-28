@@ -1,5 +1,11 @@
-plugin.tx_sventbodyclass_pi1 {
-  # cat=plugin.tx_sventbodyclass_pi1//; type=string; label= Global Default Bodytag CSS Classes
-  bodytagCssClass = 
+plugin.tx_pageclasses_pi1 {
+  # cat=pageclasses//; type=string; label= Global Default Bodytag CSS Classes
+  defaultCssClass = 
+  
+  # cat=pageclasses//; type=boolean; label= Add frontend layout class
+  addFrontendLayoutClass = 1
+  
+  # cat=pageclasses//; type=boolean; label= Add backend layout class
+  addBackendLayoutClass = 1
 }
 

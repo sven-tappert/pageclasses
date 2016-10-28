@@ -1,2 +1,1 @@
-
-Feel free to add some documentation or simply add a link to the online manual.
+The main version numbers of this exxtension follow the typo3 version numbers. There are sepatate branches for 4.x, 6.x, 7.x., ...
