@@ -11,8 +11,8 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'Add arbitrary CSS classes on per page basis with inheritance to subpages etc.',
-	'description' => 'Plugin for adding one or more CSS classes to the body tag (or other). The plugin provides inheritance and separate handling of subpages.',
+	'title' => 'Add CSS classes to pages and subpages',
+	'description' => 'Plugin for adding one or more CSS classes to the body tag. The plugin provides inheritance and separate handling of subpages.',
 	'category' => 'misc',
 	'author' => 'Sven Tappert',
 	'author_email' => 'tappert@sven-t.de',
@@ -29,7 +29,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 1,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '7.0.1',
+	'version' => '7.0.2',
 	'constraints' => array(
 		'depends' => array(
 			'typo3' => '4.5.0-7.99.999',
