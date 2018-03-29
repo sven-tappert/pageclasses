@@ -1,14 +1,14 @@
 <?php
 
-########################################################################
-# Extension Manager/Repository config file for ext "pageclasses".
-#
-# Auto generated 12-07-2012 20:05
-#
-# Manual updates:
-# Only the data in the array - everything else is removed by next
-# writing. "version" and "dependencies" must not be touched!
-########################################################################
+/***************************************************************
+ * Extension Manager/Repository config file for ext "pageclasses".
+ *
+ * Auto generated 27-03-2018 01:06
+ *
+ * Manual updates:
+ * Only the data in the array - everything else is removed by next
+ * writing. "version" and "dependencies" must not be touched!
+ ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array(
 	'title' => 'Add CSS classes to pages and subpages',
@@ -29,15 +29,16 @@ $EM_CONF[$_EXTKEY] = array(
 	'clearCacheOnLoad' => 1,
 	'lockType' => '',
 	'author_company' => '',
-	'version' => '7.0.2',
+	'version' => '8.0.0',
 	'constraints' => array(
 		'depends' => array(
-			'typo3' => '4.5.0-7.99.999',
+			'typo3' => '4.5.0-8.99.999',
 		),
 		'conflicts' => array(
 		),
 		'suggests' => array(
 		),
 	),
+	'clearcacheonload' => true,
 );
 
