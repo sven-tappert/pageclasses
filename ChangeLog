@@ -1,12 +1,8 @@
 8.0.0
 	* Verify support for Typo3 8 LTS.
 
-7.0.2
-	* Updated extension title and description.
-
 7.0.1
 	* Debug: restored support for TYPO3 4.5.
-	* Added a basic description on usage in README file.
 
 7.0.0
 	* Initial upload. 
