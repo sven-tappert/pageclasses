@@ -144,9 +144,3 @@ class tx_pageclasses_pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 		return empty($pageClasses) ? '<body>' : '<body class="'.trim(implode(' ', $pageClasses)).'">';
 	}
 }
-
-
-
-// if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pageclasses/pi1/class.tx_pageclasses_pi1.php'])	{
-// 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/pageclasses/pi1/class.tx_pageclasses_pi1.php']);
-// }
