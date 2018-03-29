@@ -1,2 +1,2 @@
 ### This file is kept for backwards compatibility in this location.
-<INCLUDE_TYPOSCRIPT: source="FILE: ../Configuration/TypoScript/constants.typoscript">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:pageclasses/Configuration/TypoScript/constants.typoscript">

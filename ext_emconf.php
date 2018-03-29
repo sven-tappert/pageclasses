@@ -17,21 +17,20 @@ $EM_CONF[$_EXTKEY] = array (
 	'author' => 'Sven Tappert',
 	'author_email' => 'tappert@sven-t.de',
 	'state' => 'stable',
-	'uploadfolder' => false,
+	'uploadfolder' => 0,
 	'createDirs' => '',
 	'clearCacheOnLoad' => 1,
 	'author_company' => '',
-	'version' => '8.0.0',
+	'version' => '8.0.1',
 	'constraints' => 
-		array (
-			'depends' => array (
-				'typo3' => '4.5.0-8.99.999',
-			),
-			'conflicts' => array (
-			),
-			'suggests' => array (
-			),
+	array (
+		'depends' => array (
+			'typo3' => '4.5.0-8.99.999',
 		),
-	'clearcacheonload' => true,
+		'conflicts' => array (
+		),
+		'suggests' => array (
+		),
+	),
 );
 
