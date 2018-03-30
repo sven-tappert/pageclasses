@@ -2,4 +2,10 @@ plugin.tx_pageclasses_pi1 {
 	defaultCssClass  = {$plugin.tx_pageclasses_pi1.defaultCssClass}
 	addFrontendLayoutClass = {$plugin.tx_pageclasses_pi1.addFrontendLayoutClass}
 	addBackendLayoutClass  = {$plugin.tx_pageclasses_pi1.addBackendLayoutClass}
+	setBodyTagCObject  = {$plugin.tx_pageclasses_pi1.setBodyTagCObject}
 }
+
+[globalVar = LIT:1 = {$plugin.tx_pageclasses_pi1.setBodyTagCObject}]
+page.bodyTagCObject >
+page.bodyTagCObject =< plugin.tx_pageclasses_pi1
+[global]
