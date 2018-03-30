@@ -38,6 +38,9 @@ The needed TS setup is added automatically (starting with version 8.1.0). This s
 
 If this is unwanted or doesn't work, you can disable autoamtic TS setup inclusion in the Constant Editor and add the TS Setup manually. Please see the troubleshooting section below, if the body tag is not rendered correctly.
 
+When everything is set up correctly, the resulting body tag could look like this:
+``<body class="home layout_0 backend_layout_pagets__default">``
+
 
 Overview of TypoScript constants
 ================================
@@ -52,9 +55,9 @@ setBodyTagCObject                     boolean    1                     Enable ID
 ====================================  =========  ====================  ===========
 
 
----
+---------------
 Troubleshooting
----
+---------------
 
 1. First make sure that the plugin is active in the Extension Manager.
 

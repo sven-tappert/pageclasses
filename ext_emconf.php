@@ -11,8 +11,8 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = array (
-	'title' => 'Add CSS classes to pages and subpages',
-	'description' => 'Plugin for adding one or more CSS classes to the body tag. The plugin provides inheritance and separate handling of subpages.',
+	'title' => 'Add CSS classes to the body tag',
+	'description' => 'Extension for adding one or more CSS classes to the body tag of the rendered pages. The extension provides inheritance, separate handling of subpages and includes classes for frontend- and backend-layouts.',
 	'category' => 'misc',
 	'author' => 'Sven Tappert',
 	'author_email' => 'tappert@sven-t.de',
@@ -21,13 +21,14 @@ $EM_CONF[$_EXTKEY] = array (
 	'createDirs' => '',
 	'clearCacheOnLoad' => 1,
 	'author_company' => '',
-	'version' => '8.0.1',
+	'version' => '8.1.0',
 	'constraints' => 
 	array (
 		'depends' => array (
 			'typo3' => '4.5.0-8.99.999',
 		),
 		'conflicts' => array (
+			'bodyclass' => '',
 		),
 		'suggests' => array (
 		),
