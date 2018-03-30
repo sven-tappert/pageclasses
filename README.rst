@@ -59,11 +59,13 @@ setBodyTagCObject                     boolean    1                     Enable ID
 Troubleshooting
 ---------------
 
-1. First make sure that the plugin is active in the Extension Manager.
+Before testing, enter a classname manually in the extensions constant "Global Default Bodytag CSS Classes". This makes shure, that there is a class to be added to the body tag. Reload frontend & check source code after every step.
 
-2. Make sure the extensions template is added to your main template: Open the main template ("Edit the whole template record") and in TAB "Includes" add the static template "Pagewide CSS classes (pageclasses)". You can verify it with the "Template Analyser" of the TYPO3 "Template" module (screenshot "Template Analyser").
+1. Make sure that the plugin is active in the Extension Manager.
 
-3. Sometimes the page.bodyTagCObject is set by other extensions (e. g. extension "bodyclasses") or in your own TS Setup (when configuring the formerly wide used extension "automaketemplate"). So check with the "TypoScript Object Browser", if TS Setup is set correctly (screenshot). If it is not, check your setup (the "Template Analyser" might help again). If you are not able to find or remove the erroneous setup, add the following lines to the very end your main setup (assuming that "page" is the name of your PAGE object):
+2. Make sure the extensions template is added to your main template: Open the main template ("Edit the whole template record") and in TAB "Includes" add the static template "Pagewide CSS classes (pageclasses)". You can verify inclusion with the "Template Analyser" of the TYPO3 "Template" module (screenshot "Template Analyser").
+
+3. Sometimes the page.bodyTagCObject is set by other extensions (e. g. extension "bodyclasses") or in your own TS Setup (e. g. when configuring the formerly popular extension "automaketemplate"). You might find the source of failure with the "TypoScript Object Browser" (screenshot) and the "Template Analyser". However, to override any other setup, add the following lines to the very end of your main setup (assuming that "page" is the name of your PAGE object):
 
 page.bodyTagCObject >
 page.bodyTagCObject =< plugin.tx_pageclasses_pi1

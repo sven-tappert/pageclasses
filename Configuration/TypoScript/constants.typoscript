@@ -11,4 +11,3 @@ plugin.tx_pageclasses_pi1 {
   # cat=pageclasses//; type=boolean; label= Enable automatically
   setBodyTagCObject = 1
 }
-
