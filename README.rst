@@ -48,10 +48,10 @@ Overview of TypoScript constants
 ====================================  =========  ====================  ===========
 Property                              Data type  Default               Description
 ====================================  =========  ====================  ===========
-defaultCssClass                       string                           Enable ID: Body tag gets ID attribute: Value from alias field or page ID.
-addFrontendLayoutClass                boolean    1                     Enable ID: Body tag gets ID attribute: Value from alias field or page ID.
-addBackendLayoutClass                 boolean    1                     Enable ID: Body tag gets ID attribute: Value from alias field or page ID.
-setBodyTagCObject                     boolean    1                     Enable ID: Body tag gets ID attribute: Value from alias field or page ID.
+defaultCssClass                       string                           Default CSS class, added to all pages.
+addFrontendLayoutClass                boolean    1                     Add CSS class depending on field "Frontend Layout" of current page.
+addBackendLayoutClass                 boolean    1                     Add CSS class depending on fields "Backend Layout/Backend Layout Subpages" of current page.
+setBodyTagCObject                     boolean    1                     Set page.bodyTagCObject appropriately in TS setup
 ====================================  =========  ====================  ===========
 
 
