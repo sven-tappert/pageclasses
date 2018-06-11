@@ -3,7 +3,7 @@
 /***************************************************************
  * Extension Manager/Repository config file for ext "pageclasses".
  *
- * Auto generated 10-06-2018 22:40
+ * Auto generated 11-06-2018 04:11
  *
  * Manual updates:
  * Only the data in the array - everything else is removed by next
@@ -21,7 +21,7 @@ $EM_CONF[$_EXTKEY] = array (
   'createDirs' => '',
   'clearCacheOnLoad' => 1,
   'author_company' => '',
-  'version' => '8.1.2',
+  'version' => '8.1.3',
   'constraints' => 
   array (
     'depends' => 

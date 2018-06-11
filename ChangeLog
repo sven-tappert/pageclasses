@@ -1,3 +1,6 @@
+8.1.3
+	* [Debug]: Class loading.
+	
 8.1.2
 	* [Debug]: Add composer.json to get correct autoloading and prevent v4 classes to be added to classmap.
 	
