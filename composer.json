@@ -1,0 +1,16 @@
+{
+  "name": "SvenT/Pageclasses",
+  "description": "'Add CSS classes to the body tag.",
+  "type": "typo3-cms-extension",
+  "keywords": ["TYPO3 CMS", "SvenT", "Pageclasses", "CSS"],
+  "homepage": "",
+  "version": "8.1.2",
+  "require": {
+    "typo3/cms-core": ">=4.5.0,<9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SvenT\\Pageclasses\\": "Classes/"
+    }
+  }
+}
