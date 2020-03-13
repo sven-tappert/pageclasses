@@ -13,7 +13,9 @@ Backend layout classes are useful, if you want to link backend layout changes to
 
 Frontend layout classes are especially useful if you want authors to change frontend layout by changing frontend layout selection. Unfortunately there is no possibility to make use of inheritance. 
 
-The extension works with TYPO3 4.5 up to TYPO3 8 LTS.
+The extension works with TYPO3 9 LTS since version 9.0.0.
+
+For use with older TYPO3 instances use the 8.x branch of the plugin (latest is 8.1.3, compatible with ALL versions from 8 LTS down to 4.5)
 
 
 -----------
@@ -36,7 +38,7 @@ Install the extension and add the static template (from extensions) "Pagewide CS
 
 The needed TS setup is added automatically (starting with version 8.1.0). This should work for most installations out of the box.
 
-If this is unwanted or doesn't work, you can disable autoamtic TS setup inclusion in the Constant Editor and add the TS Setup manually. Please see the troubleshooting section below, if the body tag is not rendered correctly.
+If this is unwanted or doesn't work, you can disable automatic TS setup inclusion in the Constant Editor and add the TS Setup manually. Please see the troubleshooting section below, if the body tag is not rendered correctly.
 
 When everything is set up correctly, the resulting body tag could look like this:
 ``<body class="home layout_0 backend_layout_pagets__default">``
@@ -73,7 +75,7 @@ page.bodyTagCObject =< plugin.tx_pageclasses_pi1
 4. Under very rare circumstances your PAGE object might have another name than "page". You can check this with the "TypoScript Object Browser" as well.
 
 
-.. figure:: Documentation/template-analyser.png
+.. figure:: Documentation/template-analyser-v9.png
 
     "Template Analyser"
 	

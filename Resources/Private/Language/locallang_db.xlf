@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+
+	<file source-language="en" datatype="plaintext" original="messages" date="2020-03-13T18:00:00Z" product-name="pageclasses">
+	
+		<header/>
+		<body>
+
+			<trans-unit id="pages.tx_pageclasses_css_palette">
+				<source>Body Tag CSS</source>
+			</trans-unit> 
+			<trans-unit id="pages.tx_pageclasses_css_classes">
+				<source>BodyTag CSS Classes</source>
+			</trans-unit> 
+			<trans-unit id="pages.tx_pageclasses_css_classes_subpages">
+				<source>BodyTag CSS Classes for Subpages</source>
+			</trans-unit> 
+			<trans-unit id="pages.tx_pageclasses_stop_css_inheritance">
+				<source>Don't inherit CSS class from parent</source>
+			</trans-unit> 
+			
+		</body>
+	</file>
+	
+</xliff>

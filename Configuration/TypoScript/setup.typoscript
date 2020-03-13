@@ -1,11 +1,18 @@
+# Setting pageclasses plugin TypoScript
+plugin.tx_pageclasses_pi1 = USER
 plugin.tx_pageclasses_pi1 {
+
+	userFunc = SvenT\Pageclasses\Plugin\Pageclasses->main
+	
 	defaultCssClass  = {$plugin.tx_pageclasses_pi1.defaultCssClass}
 	addFrontendLayoutClass = {$plugin.tx_pageclasses_pi1.addFrontendLayoutClass}
 	addBackendLayoutClass  = {$plugin.tx_pageclasses_pi1.addBackendLayoutClass}
 	setBodyTagCObject  = {$plugin.tx_pageclasses_pi1.setBodyTagCObject}
+	
+	
 }
 
-[globalVar = LIT:1 = {$plugin.tx_pageclasses_pi1.setBodyTagCObject}]
-page.bodyTagCObject >
-page.bodyTagCObject =< plugin.tx_pageclasses_pi1
-[global]
+[{$plugin.tx_pageclasses_pi1.setBodyTagCObject} == 1]
+	page.bodyTagCObject >
+	page.bodyTagCObject =< plugin.tx_pageclasses_pi1
+[GLOBAL]
