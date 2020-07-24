@@ -13,7 +13,7 @@ Backend layout classes are useful, if you want to link backend layout changes to
 
 Frontend layout classes are especially useful if you want authors to change frontend layout by changing frontend layout selection. Unfortunately there is no possibility to make use of inheritance. 
 
-The extension works with TYPO3 9 LTS since version 9.0.0.
+The extension works with TYPO3 9 and 10 LTS in current version (10.x).
 
 For use with older TYPO3 instances use the 8.x branch of the plugin (latest is 8.1.3, compatible with ALL versions from 8 LTS down to 4.5)
 

@@ -1,3 +1,7 @@
+10.0.0
+	* [RELEASE]: Update for TYPO3 10. 
+	* Thanks to Florian Elischer <starlort@gmx.net> for encouraging and supporting updates to versions 9 and 10.
+	
 9.0.0
 	* [RELEASE]: Update for TYPO3 9. Dropped compatibility for older releases of TYPO3 (use version 8.x for TYPO3 releases 4.5-8.x).
 	
