@@ -4,7 +4,7 @@
   "type": "typo3-cms-extension",
   "keywords": ["TYPO3 CMS", "SvenT", "Pageclasses", "CSS"],
   "homepage": "",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "require": {
     "typo3/cms-core": ">=9.0,<11.0"
   },
