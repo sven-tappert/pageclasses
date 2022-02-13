@@ -1,5 +1,9 @@
+11.0.2
+	* [MAINTENANCE]: Added TYPO3 extension key to composer.json.
+	* [FIX] TYPO3 9 compatibility.
+	
 11.0.1
-	* [FIX]: Restore compatibility with TYPO3 9. 
+	* [FIX]: Restore compatibility for TYPO3 9. 
 
 11.0.0
 	* [RELEASE]: Update for TYPO3 11. 

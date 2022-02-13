@@ -3,6 +3,11 @@ defined('TYPO3_MODE') or die();
 
 call_user_func(function () {
 	
+    // Remove me once I drop support for v9:
+    if (!class_exists(\TYPO3\CMS\Core\Domain\Repository\PageRepository::class) && class_exists(\TYPO3\CMS\Frontend\Page\PageRepository::class)) {
+        class_alias(\TYPO3\CMS\Frontend\Page\PageRepository::class, \TYPO3\CMS\Core\Domain\Repository\PageRepository::class, true);
+    }
+    
 	$tempColumns = array (
 		'tx_pageclasses_css_classes' => array (
 			'exclude' => 1,
