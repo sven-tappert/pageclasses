@@ -125,7 +125,9 @@ class Pageclasses extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
 		}
 		
 		// call hooks
-		if (is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['pageclasses']['pageclassesCssHook']))
+		if (array_key_exists('pageclasses', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'])
+			&& array_key_exists('pageclassesCssHook', $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['pageclasses'])
+			&& is_array($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['pageclasses']['pageclassesCssHook']))
 		{
 			foreach ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['pageclasses']['pageclassesCssHook'] as $_classRef)
 			{

@@ -1,3 +1,6 @@
+11.0.3
+	* [FIX] Improved hook integration condition.
+	
 11.0.2
 	* [MAINTENANCE]: Added TYPO3 extension key to composer.json.
 	* [FIX] TYPO3 9 compatibility.
