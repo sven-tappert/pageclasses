@@ -1,3 +1,6 @@
+11.0.4
+	* [FIX] Fixed "addRootLineFields" inclusion in ext_localconf.php.
+	
 11.0.3
 	* [FIX] Fixed condition for "pageclassesCssHook".
 	
