@@ -6,7 +6,7 @@
 
 $EM_CONF[$_EXTKEY] = [
 	'title' => 'Add CSS classes to the body tag',
-	'description' => 'Adding one or more CSS classes to the body tag of the rendered pages. The extension provides inheritance, separate handling of subpages and includes classes for frontend- and backend-layouts. Thanks to Florian Elischer for encouraging and supporting Update to Typo3 9/10 LTS.',
+	'description' => 'Adding one or more CSS classes to the body tag of the rendered pages. The extension provides inheritance, separate handling of subpages and includes classes for frontend- and backend-layouts.',
 	'category' => 'misc',
 	'author' => 'Sven Tappert',
 	'author_email' => 'tappert@sven-t.de',

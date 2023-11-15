@@ -1,6 +1,6 @@
 {
     "name": "SvenT/Pageclasses",
-    "description": "Adding one or more CSS classes to the body tag of the rendered pages. The extension provides inheritance, separate handling of subpages and includes classes for frontend- and backend-layouts. Thanks to Florian Elischer for encouraging and supporting Update to Typo3 9/10/11 LTS.",
+    "description": "Adding one or more CSS classes to the body tag of the rendered pages. The extension provides inheritance, separate handling of subpages and includes classes for frontend- and backend-layouts.",
     "type": "typo3-cms-extension",
     "keywords": [
         "TYPO3 CMS",
@@ -9,9 +9,9 @@
         "CSS"
     ],
     "homepage": "",
-    "version": "11.0.4",
+    "version": "12.0.0",
     "require": {
-        "typo3/cms-core": ">=9.0,<12.0"
+        "typo3/cms-core": ">=11.0,<13.0"
     },
     "autoload": {
         "psr-4": {
