@@ -32,7 +32,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * @package	TYPO3
  * @subpackage	Plugin
  */
-class Pageclasses extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin
+class Pageclasses /*extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin*/
 {
 	public $prefixId      = 'tx_pageclasses_pi1';		// prefix to catch get/post vars
 	public $scriptRelPath = 'Classes/Plugin/Pageclasses.php';	// Path to this script relative to the extension dir.
