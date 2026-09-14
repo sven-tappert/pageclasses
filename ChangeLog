@@ -1,5 +1,23 @@
+13.0.0
+    * [RELEASE]: Compatibility with TYPO3 13, while TYPO3 12 keeps working.
+    * [!!!]: Dropped the inheritance from "Frontend\Plugin\AbstractPlugin",
+      which has been removed in TYPO3 13. Extensions overriding the plugin
+      class must no longer rely on the inherited "pi_*" API.
+    * [TASK]: Read page id, page record and rootline from the request
+      attribute "frontend.page.information" instead of $GLOBALS['TSFE'],
+      which is deprecated in TYPO3 13. Falls back to the frontend controller
+      on TYPO3 12.
+    * [TASK]: Accept the request as third argument of "main()", as passed by
+      ContentObjectRenderer::callUserFunction().
+    * [TASK]: Skip "addRootLineFields" on TYPO3 13, where the option has been
+      removed and all pages columns are part of the rootline anyway.
+    * [TASK]: Added strict types and type declarations, hardened array access
+      and dropped the reference assignment in the hook invocation.
+    * [TASK]: Fixed the invalid Composer package name and removed obsolete
+      ext_emconf.php keys.
+
 12.0.0
-    * [RELEASE]: Compatibility with TYPO3 12. 
+    * [RELEASE]: Compatibility with TYPO3 12.
 
 11.0.4
 	* [FIX] Fixed "addRootLineFields" inclusion in ext_localconf.php.
