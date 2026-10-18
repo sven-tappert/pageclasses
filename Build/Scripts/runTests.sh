@@ -10,7 +10,7 @@
 #                      (composer update --with typo3/cms-*:<constraint>, composer.json stays untouched)
 #      lint            php -l on all PHP files
 #      phpcompat       PHPCompatibility for the whole supported PHP range (Build/phpcs.xml)
-#      phpstan         PHPStan (Build/phpstan.neon) against the installed TYPO3 version
+#      phpstan         PHPStan (Build/phpstan.neon, or Build/phpstan-typo3-<t>.neon if present)
 #      functional      functional tests (Build/phpunit/FunctionalTests*.xml), SQLite
 #      docs            render Documentation/ with the official TYPO3 render-guides container
 #   -p <php>           PHP version: 8.1, 8.2, 8.3, 8.4, 8.5
@@ -120,7 +120,10 @@ case $SUITE in
     if [ "$SUITE" = phpcompat ]; then
       run .Build/bin/phpcs --standard=Build/phpcs.xml "${EXTRA[@]}"
     elif [ "$SUITE" = phpstan ]; then
-      run .Build/bin/phpstan analyse --no-progress --memory-limit=1G -c Build/phpstan.neon "${EXTRA[@]}"
+      # a version specific config (e.g. ignoring the v13 API on v12) includes the common one
+      config=Build/phpstan.neon
+      [ -f "$ROOT/Build/phpstan-typo3-$TYPO3_VERSION.neon" ] && config=Build/phpstan-typo3-$TYPO3_VERSION.neon
+      run .Build/bin/phpstan analyse --no-progress --memory-limit=1G -c "$config" "${EXTRA[@]}"
     else
       # TYPO3 12 is tested with PHPUnit 10, TYPO3 13 with PHPUnit 11
       config=Build/phpunit/FunctionalTests.xml

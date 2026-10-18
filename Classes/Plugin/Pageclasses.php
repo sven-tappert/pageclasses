@@ -171,7 +171,7 @@ class Pageclasses
         if ($controller instanceof TypoScriptFrontendController) {
             return [
                 'id' => $controller->id,
-                'page' => (array)($controller->page ?? []),
+                'page' => (array)$controller->page,
                 'rootLine' => $controller->rootLine,
             ];
         }

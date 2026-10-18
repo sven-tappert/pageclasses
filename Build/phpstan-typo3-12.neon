@@ -1,0 +1,14 @@
+# PHPStan against TYPO3 12: Pageclasses::resolvePageContext() uses the v13 API
+# (request attribute "frontend.page.information") only when it is available.
+# Drop this file together with TYPO3 12 support.
+includes:
+    - phpstan.neon
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#TYPO3\\CMS\\Frontend\\Page\\PageInformation#'
+            path: ../Classes/Plugin/Pageclasses.php
+        -
+            message: '#request attribute "frontend\.page\.information"#'
+            path: ../Classes/Plugin/Pageclasses.php
