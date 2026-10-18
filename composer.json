@@ -1,17 +1,32 @@
 {
-    "name": "SvenT/Pageclasses",
+    "name": "svent/pageclasses",
     "description": "Adding one or more CSS classes to the body tag of the rendered pages. The extension provides inheritance, separate handling of subpages and includes classes for frontend- and backend-layouts.",
+    "license": "GPL-2.0-or-later",
     "type": "typo3-cms-extension",
     "keywords": [
         "TYPO3 CMS",
-        "SvenT",
-        "Pageclasses",
-        "CSS"
+        "TYPO3 extension",
+        "body tag",
+        "CSS",
+        "pageclasses"
     ],
-    "homepage": "",
-    "version": "12.0.0",
+    "authors": [
+        {
+            "name": "Sven Tappert",
+            "email": "tappert@sven-t.de",
+            "role": "Developer"
+        }
+    ],
+    "homepage": "https://github.com/sven-tappert/pageclasses",
+    "support": {
+        "issues": "https://github.com/sven-tappert/pageclasses/issues",
+        "source": "https://github.com/sven-tappert/pageclasses",
+        "docs": "https://docs.typo3.org/p/svent/pageclasses/main/en-us/"
+    },
     "require": {
-        "typo3/cms-core": ">=11.0,<13.0"
+        "php": "~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+        "typo3/cms-core": "^11.5 || ^12.4",
+        "typo3/cms-frontend": "^11.5 || ^12.4"
     },
     "autoload": {
         "psr-4": {
