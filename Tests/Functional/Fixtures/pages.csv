@@ -1,0 +1,8 @@
+"pages"
+,"uid","pid","title","slug","doktype","is_siteroot","layout","backend_layout","backend_layout_next_level","tx_pageclasses_css_classes","tx_pageclasses_css_classes_subpages","tx_pageclasses_stop_css_inheritance"
+,1,0,"Root","/",1,1,0,"pagets__home","pagets__content","root","from-root",0
+,2,1,"Level 1","/level-1",1,0,2,"","","level1 second-class","from-level1",0
+,3,2,"Level 2","/level-1/level-2",1,0,0,"","","","",0
+,4,2,"Stop","/level-1/stop",1,0,0,"","","stop","from-stop",1
+,5,4,"Below stop","/level-1/stop/below",1,0,0,"","","below","",0
+,6,1,"Own backend layout","/own-backend-layout",1,0,0,"pagets__special","","","",0

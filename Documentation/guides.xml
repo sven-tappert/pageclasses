@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides xmlns="https://www.phpdoc.org/guides"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+        links-are-relative="true"
+>
+    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+               interlink-shortcode="svent/pageclasses"
+               edit-on-github="sven-tappert/pageclasses"
+               edit-on-github-branch="main"
+               project-home="https://extensions.typo3.org/extension/pageclasses"
+               project-repository="https://github.com/sven-tappert/pageclasses"
+               project-issues="https://github.com/sven-tappert/pageclasses/issues"
+               typo3-core-preferred="13.4"
+    />
+    <project title="Pagewide CSS classes"
+             release="13.0.0"
+             version="13.0"
+             copyright="since 2015 by Sven Tappert"
+    />
+</guides>

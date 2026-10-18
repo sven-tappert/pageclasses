@@ -43,6 +43,11 @@ use TYPO3\CMS\Frontend\Page\PageInformation;
 class Pageclasses
 {
     /**
+     * Same flags on all PHP versions (the default of htmlspecialchars() changed with PHP 8.1)
+     */
+    private const HTMLSPECIALCHARS_FLAGS = ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401;
+
+    /**
      * The main method of the plugin, returning the complete body tag.
      *
      * Called through ContentObjectRenderer::callUserFunction(), which passes
@@ -66,10 +71,11 @@ class Pageclasses
         $frontendLayout = null;
         $backendLayout = null;
         $stopCssInheritance = false;
+        $addBackendLayoutClass = (bool)($conf['addBackendLayoutClass'] ?? false);
 
         // get global class from ts config
         foreach (GeneralUtility::trimExplode(' ', (string)($conf['defaultCssClass'] ?? ''), true) as $class) {
-            $pageClasses[$class] = htmlspecialchars($class);
+            $pageClasses[$class] = $this->escape($class);
         }
 
         // step through rootline, to find inherited css classes
@@ -85,23 +91,23 @@ class Pageclasses
                 }
 
                 // if set, add backendLayout
-                if (($conf['addBackendLayoutClass'] ?? false) && !empty($page['backend_layout'])) {
+                if ($addBackendLayoutClass && !empty($page['backend_layout'])) {
                     $backendLayout = 'backend_layout_' . $page['backend_layout'];
                 }
 
                 // current pages css classes are set - add them
                 foreach (GeneralUtility::trimExplode(' ', (string)($page['tx_pageclasses_css_classes'] ?? ''), true) as $class) {
-                    $pageClasses[$class] = htmlspecialchars($class);
+                    $pageClasses[$class] = $this->escape($class);
                 }
             } else {
                 // collect classes from parent pages - add dedicated subpages classes
                 if (!$stopCssInheritance) {
                     foreach (GeneralUtility::trimExplode(' ', (string)($page['tx_pageclasses_css_classes_subpages'] ?? ''), true) as $class) {
-                        $pageClasses[$class] = htmlspecialchars($class);
+                        $pageClasses[$class] = $this->escape($class);
                     }
                 }
 
-                if (empty($backendLayout) && !empty($page['backend_layout_next_level'])) {
+                if ($addBackendLayoutClass && empty($backendLayout) && !empty($page['backend_layout_next_level'])) {
                     $backendLayout = 'backend_layout_' . $page['backend_layout_next_level'];
                 }
             }
@@ -112,17 +118,17 @@ class Pageclasses
             }
 
             // we're done
-            if ($stopCssInheritance && !empty($backendLayout)) {
+            if ($stopCssInheritance && (!$addBackendLayoutClass || !empty($backendLayout))) {
                 break;
             }
         }
 
         if (!empty($frontendLayout)) {
-            $pageClasses[$frontendLayout] = htmlspecialchars($frontendLayout);
+            $pageClasses[$frontendLayout] = $this->escape($frontendLayout);
         }
 
         if (!empty($backendLayout)) {
-            $pageClasses[$backendLayout] = htmlspecialchars($backendLayout);
+            $pageClasses[$backendLayout] = $this->escape($backendLayout);
         }
 
         // call hooks
@@ -171,5 +177,10 @@ class Pageclasses
         }
 
         return null;
+    }
+
+    private function escape(string $class): string
+    {
+        return htmlspecialchars($class, self::HTMLSPECIALCHARS_FLAGS);
     }
 }
