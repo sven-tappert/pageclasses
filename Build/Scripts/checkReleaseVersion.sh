@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
-# Check that a release tag matches the extension: ext_emconf.php carries the same
-# version, composer.json has no "version" field (Packagist takes it from the tag)
-# and the ChangeLog has an entry for it.
+# Check that a release tag matches the extension: ext_emconf.php and
+# Documentation/guides.xml carry the same version, composer.json has no "version"
+# field (Packagist takes it from the tag) and the changelog has an entry for it.
 #
 # Usage: Build/Scripts/checkReleaseVersion.sh <version>
 set -euo pipefail
@@ -20,9 +20,13 @@ fi
 if grep -q '^[[:space:]]*"version"[[:space:]]*:' composer.json; then
   echo "composer.json must not contain a \"version\" field" >&2; fail=1
 fi
-if ! grep -qx "$VERSION" ChangeLog; then
-  echo "ChangeLog has no entry for $VERSION" >&2; fail=1
+release=$(sed -n 's/.*[[:space:]]release="\([^"]*\)".*/\1/p' Documentation/guides.xml)
+if [ "$release" != "$VERSION" ]; then
+  echo "Documentation/guides.xml has release '$release', expected '$VERSION'" >&2; fail=1
+fi
+if ! grep -qx "$VERSION" Documentation/Changelog/Index.rst; then
+  echo "Documentation/Changelog/Index.rst has no entry for $VERSION" >&2; fail=1
 fi
 
-[ $fail = 0 ] && echo "Release $VERSION: ext_emconf.php, composer.json and ChangeLog are consistent"
+[ $fail = 0 ] && echo "Release $VERSION: ext_emconf.php, guides.xml, composer.json and changelog are consistent"
 exit $fail
