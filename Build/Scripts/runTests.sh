@@ -82,6 +82,12 @@ case $SUITE in
       --with "phpunit/phpunit:$PHPUNIT_CONSTRAINT"
     # remember the combination, phpstan/functional refuse to run on another one
     echo "$PHP_VERSION $TYPO3_VERSION" > "$ROOT/.Build/.installed"
+    # activate the pre-commit hook in .githooks/ (on the host, git is not needed in the container);
+    # the hook reinstalls when composer.json differs, e.g. after switching branches
+    if [ -e "$ROOT/.git" ] && command -v git > /dev/null; then
+      git -C "$ROOT" config core.hooksPath .githooks
+      git -C "$ROOT" hash-object composer.json > "$ROOT/.Build/.installed-composer"
+    fi
     ;;
   lint)
     run bash -c 'find . -name "*.php" -not -path "./.Build/*" -print0 \

@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#
+# Runs a quick subset of the checks before a commit is accepted:
+# lint, phpstan and the functional tests for the TYPO3/PHP combination
+# installed in .Build/ (see .Build/.installed), docs only if Documentation/ is
+# part of the commit. The full matrix runs in Build/Scripts/testMatrix.sh and
+# on GitHub.
+#
+# Activated by "Build/Scripts/runTests.sh -s composerUpdate" or manually with
+# "git config core.hooksPath .githooks". Skip once with "git commit --no-verify".
+set -uo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+RUN=Build/Scripts/runTests.sh
+
+abort() {
+  printf '\nCommit aborted: %s\nFix the issue or skip the checks with "git commit --no-verify".\n' "$1" >&2
+  exit 1
+}
+
+docker info > /dev/null 2>&1 || abort "docker is not running, the checks need it."
+
+# (re)install with the defaults of runTests.sh if nothing is installed yet or
+# composer.json changed since, e.g. after switching branches
+if [ ! -s .Build/.installed ] \
+  || [ "$(cat .Build/.installed-composer 2>/dev/null)" != "$(git hash-object composer.json)" ]; then
+  echo "pre-commit: composer.json changed or nothing installed, running composerUpdate first ..."
+  "$RUN" -s composerUpdate > .Build/composerUpdate-hook.log 2>&1 \
+    || abort "composerUpdate failed, see .Build/composerUpdate-hook.log."
+fi
+read -r php typo3 < .Build/.installed
+
+echo "pre-commit: checking with TYPO3 $typo3 / PHP $php ..."
+"$RUN" -s lint -p "$php" || abort "lint failed."
+"$RUN" -s phpstan -p "$php" -t "$typo3" || abort "phpstan failed."
+"$RUN" -s functional -p "$php" -t "$typo3" || abort "functional tests failed."
+
+if git diff --cached --name-only | grep -q '^Documentation/'; then
+  "$RUN" -s docs || abort "the documentation does not render without warnings."
+fi

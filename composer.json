@@ -62,5 +62,8 @@
             "extension-key": "pageclasses",
             "web-dir": ".Build/public"
         }
+    },
+    "scripts": {
+        "hooks:install": "git config core.hooksPath .githooks"
     }
 }

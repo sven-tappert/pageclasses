@@ -7,6 +7,7 @@
 # Build/ holds sources and tooling, e.g. the Fireworks sources of the
 # documentation graphics in Build/Sources/Documentation/Images/.
 /.github         export-ignore
+/.githooks       export-ignore
 /Build           export-ignore
 /Tests           export-ignore
 /.gitattributes  export-ignore

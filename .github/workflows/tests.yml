@@ -1,11 +1,20 @@
 name: tests
 
 # Same checks as Build/Scripts/testMatrix.sh, one job per TYPO3/PHP combination.
-# Keep the matrix in sync with composer.json, ext_emconf.php and testMatrix.sh.
+# The matrix is every TYPO3 version crossed with every PHP version, minus the
+# combinations a TYPO3 version does not support (exclude).
+# Keep it in sync with composer.json, ext_emconf.php and testMatrix.sh.
+# The documentation is checked in docs.yml.
 
 on:
   push:
+    paths-ignore:
+      - 'Documentation/**'
+      - '*.md'
   pull_request:
+    paths-ignore:
+      - 'Documentation/**'
+      - '*.md'
   workflow_dispatch:
 
 permissions:
@@ -29,15 +38,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - { typo3: '12', php: '8.1' }
-          - { typo3: '12', php: '8.2' }
-          - { typo3: '12', php: '8.3' }
-          - { typo3: '12', php: '8.4' }
-          - { typo3: '13', php: '8.2' }
-          - { typo3: '13', php: '8.3' }
-          - { typo3: '13', php: '8.4' }
-          - { typo3: '13', php: '8.5' }
+        typo3: ['12', '13']
+        php: ['8.1', '8.2', '8.3', '8.4', '8.5']
+        exclude:
+          - { typo3: '12', php: '8.5' }
+          - { typo3: '13', php: '8.1' }
     steps:
       - uses: actions/checkout@v4
       - run: Build/Scripts/runTests.sh -s composerUpdate -p ${{ matrix.php }} -t ${{ matrix.typo3 }}
@@ -51,10 +56,3 @@ jobs:
       - uses: actions/checkout@v4
       - run: Build/Scripts/runTests.sh -s composerUpdate -p 8.5 -t 13
       - run: Build/Scripts/runTests.sh -s phpcompat -p 8.5 -t 13
-
-  docs:
-    name: documentation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: Build/Scripts/runTests.sh -s docs
