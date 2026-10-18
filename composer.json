@@ -54,6 +54,7 @@
             "typo3/cms-composer-installers": true
         },
         "bin-dir": ".Build/bin",
+        "process-timeout": 0,
         "sort-packages": true,
         "vendor-dir": ".Build/vendor"
     },
@@ -64,6 +65,29 @@
         }
     },
     "scripts": {
-        "hooks:install": "git config core.hooksPath .githooks"
+        "deps:install": "Build/Scripts/runTests.sh -s composerUpdate",
+        "docs:render": "Build/Scripts/runTests.sh -s docs",
+        "hooks:install": "git config core.hooksPath .githooks",
+        "test": [
+            "@test:lint",
+            "@test:phpstan",
+            "@test:functional"
+        ],
+        "test:all": "Build/Scripts/testMatrix.sh",
+        "test:functional": "Build/Scripts/runTests.sh -s functional",
+        "test:lint": "Build/Scripts/runTests.sh -s lint",
+        "test:phpcompat": "Build/Scripts/runTests.sh -s phpcompat",
+        "test:phpstan": "Build/Scripts/runTests.sh -s phpstan"
+    },
+    "scripts-descriptions": {
+        "deps:install": "Install the dependencies in .Build/ (default PHP 8.4, other versions: -- -p 8.2 -t 12)",
+        "docs:render": "Render Documentation/ to Documentation-GENERATED-temp/",
+        "hooks:install": "Activate the pre-commit hook in .githooks/",
+        "test": "Lint, PHPStan and functional tests for the installed TYPO3/PHP combination",
+        "test:all": "All checks for every supported TYPO3/PHP combination",
+        "test:functional": "Functional tests (other versions: -- -p 8.2 -t 12)",
+        "test:lint": "PHP syntax check (other version: -- -p 8.2)",
+        "test:phpcompat": "PHPCompatibility for the whole supported PHP range",
+        "test:phpstan": "PHPStan (other versions: -- -p 8.2 -t 12)"
     }
 }

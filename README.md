@@ -35,13 +35,20 @@ All checks run in docker containers, see `Build/Scripts/runTests.sh -h`.
 combination. The Fireworks sources of the documentation graphics are in
 `Build/Sources/Documentation/Images/`.
 
+The common tasks are available as Composer scripts (`composer list` shows
+them all, `Build/Scripts/runTests.sh -h` explains the options):
+
 ```bash
-Build/Scripts/runTests.sh -s composerUpdate   # install dependencies (TYPO3 13 / PHP 8.4)
-Build/Scripts/testMatrix.sh                   # all checks, all combinations
+composer test                                 # lint, PHPStan, functional tests
+composer test:functional -- -p 8.2 -t 12      # one check for another TYPO3/PHP combination
+composer test:all                             # all checks, all combinations
+composer docs:render                          # render the documentation
+composer deps:install                         # (re)install the dependencies in .Build/
 git commit --no-verify                        # skip the pre-commit checks once
 ```
 
-`composerUpdate` also activates the pre-commit hook in `.githooks/`
-(or run `composer hooks:install`). It runs lint, PHPStan and the functional
-tests for the installed TYPO3/PHP combination before every commit, and renders
-the documentation if it is part of the commit.
+The checks install the dependencies they need on their own, also after
+switching branches. `deps:install` also activates the pre-commit hook in
+`.githooks/` (or run `composer hooks:install`). It runs lint, PHPStan and the
+functional tests before every commit, and renders the documentation if it is
+part of the commit.
