@@ -1,0 +1,10 @@
+* text=auto eol=lf
+
+*.gif  binary
+*.png  binary
+
+# Not part of the distributed extension (composer dist / git archive).
+# Build/ holds sources and tooling, e.g. the Fireworks sources of the
+# documentation graphics in Build/Sources/Documentation/Images/.
+/Build           export-ignore
+/.gitattributes  export-ignore
