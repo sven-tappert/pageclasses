@@ -4,6 +4,23 @@
 Changelog
 =========
 
+..  _changelog-12-0-1:
+
+12.0.1
+======
+
+*   [BUGFIX] Restore compatibility with PHP 7.4 (12.0.0 failed with a parse
+    error in ext_localconf.php on TYPO3 11 with PHP 7.4).
+*   [BUGFIX] No PHP notices and warnings on PHP 8.x, same HTML escaping of
+    the classes on all PHP versions.
+*   [BUGFIX] addBackendLayoutClass = 0 also disables the backend layout class
+    inherited from parent pages.
+*   [TASK] Installable with Composer: package name svent/pageclasses,
+    available on Packagist.
+*   [TASK] Supported: TYPO3 11.5 LTS and 12.4 LTS with PHP 7.4 - 8.4, checked
+    with functional tests for every combination.
+*   [DOCS] Documentation in the format of docs.typo3.org.
+
 ..  _changelog-12-0-0:
 
 12.0.0
