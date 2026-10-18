@@ -33,3 +33,14 @@ All checks run in docker containers, see `Build/Scripts/runTests.sh -h`.
 `Build/Scripts/testMatrix.sh` runs them for every supported TYPO3/PHP
 combination. The Fireworks sources of the documentation graphics are in
 `Build/Sources/Documentation/Images/`.
+
+```bash
+Build/Scripts/runTests.sh -s composerUpdate   # install dependencies (TYPO3 12 / PHP 8.4)
+Build/Scripts/testMatrix.sh                   # all checks, all combinations
+git commit --no-verify                        # skip the pre-commit checks once
+```
+
+`composerUpdate` also activates the pre-commit hook in `.githooks/`
+(or run `composer hooks:install`). It runs lint, PHPStan and the functional
+tests for the installed TYPO3/PHP combination before every commit, and renders
+the documentation if it is part of the commit.

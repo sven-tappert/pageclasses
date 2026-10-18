@@ -1,0 +1,26 @@
+name: docs
+
+# Renders Documentation/ with the official TYPO3 render-guides container and
+# fails on any warning. Runs only when the documentation changes.
+
+on:
+  push:
+    paths:
+      - 'Documentation/**'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    paths:
+      - 'Documentation/**'
+      - '.github/workflows/docs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docs:
+    name: documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: Build/Scripts/runTests.sh -s docs
