@@ -1,0 +1,61 @@
+name: tests
+
+# Same checks as Build/Scripts/testMatrix.sh, one job per TYPO3/PHP combination.
+# Keep the matrix in sync with composer.json, ext_emconf.php and testMatrix.sh.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: lint PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - run: Build/Scripts/runTests.sh -s lint -p ${{ matrix.php }}
+
+  tests:
+    name: TYPO3 ${{ matrix.typo3 }} / PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { typo3: '11', php: '7.4' }
+          - { typo3: '11', php: '8.0' }
+          - { typo3: '11', php: '8.1' }
+          - { typo3: '11', php: '8.2' }
+          - { typo3: '11', php: '8.3' }
+          - { typo3: '12', php: '8.1' }
+          - { typo3: '12', php: '8.2' }
+          - { typo3: '12', php: '8.3' }
+          - { typo3: '12', php: '8.4' }
+    steps:
+      - uses: actions/checkout@v4
+      - run: Build/Scripts/runTests.sh -s composerUpdate -p ${{ matrix.php }} -t ${{ matrix.typo3 }}
+      - run: Build/Scripts/runTests.sh -s phpstan -p ${{ matrix.php }} -t ${{ matrix.typo3 }}
+      - run: Build/Scripts/runTests.sh -s functional -p ${{ matrix.php }} -t ${{ matrix.typo3 }}
+
+  phpcompat:
+    name: PHPCompatibility 7.4-8.4
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: Build/Scripts/runTests.sh -s composerUpdate -p 8.4 -t 12
+      - run: Build/Scripts/runTests.sh -s phpcompat -p 8.4 -t 12
+
+  docs:
+    name: documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: Build/Scripts/runTests.sh -s docs

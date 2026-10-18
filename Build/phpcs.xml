@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ruleset name="pageclasses-php-compatibility">
+    <description>All PHP files must work with every PHP version supported by this branch.</description>
+
+    <file>../Classes</file>
+    <file>../Configuration</file>
+    <file>../Tests</file>
+    <file>../ext_emconf.php</file>
+    <file>../ext_localconf.php</file>
+    <file>../ext_tables.php</file>
+
+    <arg name="extensions" value="php"/>
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <!-- keep in sync with the "php" constraint in composer.json / ext_emconf.php -->
+    <config name="testVersion" value="7.4-8.4"/>
+    <rule ref="PHPCompatibility"/>
+</ruleset>

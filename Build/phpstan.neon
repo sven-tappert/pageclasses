@@ -1,0 +1,12 @@
+includes:
+    - ../.Build/vendor/saschaegerer/phpstan-typo3/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - ../Classes
+        - ../Configuration
+        - ../Tests
+        - ../ext_localconf.php
+        - ../ext_tables.php
+    tmpDir: ../.Build/.cache/phpstan
