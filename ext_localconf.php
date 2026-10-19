@@ -10,3 +10,10 @@ defined('TYPO3') or die();
 if (isset($GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'])) {
     $GLOBALS['TYPO3_CONF_VARS']['FE']['addRootLineFields'] .= ',tx_pageclasses_css_classes,tx_pageclasses_css_classes_subpages,tx_pageclasses_pass_on_css,tx_pageclasses_stop_css_inheritance';
 }
+
+// Read-only field in the page properties (pages.tx_pageclasses_info)
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['formEngine']['nodeRegistry'][1792396800] = [
+    'nodeName' => 'pageclassesBodyClassInfo',
+    'priority' => 40,
+    'class' => \SvenT\Pageclasses\Form\Element\BodyClassInfoElement::class,
+];

@@ -20,6 +20,8 @@ branches of your page tree differently.
 *   **Stop inheritance**: a page with this option set does not get the
     subpage classes of its parent pages - and neither do the pages below it,
     unless they define subpage classes on their own.
+*   **Overview**: a read-only field in the same section lists the classes
+    the page gets from the page tree and where each of them comes from.
 
 Additionally, CSS classes for the page layout are added:
 

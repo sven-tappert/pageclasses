@@ -17,7 +17,43 @@
 			</trans-unit> 
 			<trans-unit id="pages.tx_pageclasses_stop_css_inheritance">
 				<target>CSS Klasse nicht von Elternseiten erben</target>
-			</trans-unit> 
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info">
+				<source>CSS classes from the page tree</source>
+				<target>CSS-Klassen aus dem Seitenbaum</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.class">
+				<source>Class</source>
+				<target>Klasse</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.source">
+				<source>Source</source>
+				<target>Herkunft</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.source.page">
+				<source>This page</source>
+				<target>Diese Seite</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.source.parent">
+				<source>Inherited from page %s</source>
+				<target>Geerbt von Seite %s</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.noClasses">
+				<source>No CSS classes from the page tree.</source>
+				<target>Keine CSS-Klassen aus dem Seitenbaum.</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.stopped.page">
+				<source>This page does not inherit CSS classes from its parent pages.</source>
+				<target>Diese Seite erbt keine CSS-Klassen von ihren Elternseiten.</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.stopped.parent">
+				<source>Inheritance stops at page %s. Pages above it pass on no CSS classes.</source>
+				<target>Die Vererbung endet bei Seite %s. Seiten darüber geben keine CSS-Klassen weiter.</target>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.note">
+				<source>Shows the saved state. Not included: classes from TypoScript (defaultCssClass, frontend and backend layout) and from hooks.</source>
+				<target>Zeigt den gespeicherten Stand. Nicht enthalten: Klassen aus dem TypoScript (defaultCssClass, Frontend- und Backend-Layout) und aus Hooks.</target>
+			</trans-unit>
 
 		</body>
 	</file>

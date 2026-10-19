@@ -4,6 +4,20 @@
 Changelog
 =========
 
+..  _changelog-13-1-0:
+
+13.1.0
+======
+
+*   [FEATURE] New read-only field "CSS classes from the page tree" in the
+    page properties, section "Body Tag CSS". It lists the classes the page
+    gets from its own fields and from its parent pages, with the page each
+    class comes from, and the page where the inheritance stops. Editors
+    need the field in "Allowed excludefields" of their backend user group.
+*   [TASK] Moved the calculation of the classes from the plugin to the
+    service ``SvenT\Pageclasses\Service\BodyClassResolver``, which the
+    plugin and the new field share. The rendered body tag is unchanged.
+
 ..  _changelog-13-0-0:
 
 13.0.0
