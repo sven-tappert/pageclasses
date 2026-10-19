@@ -3,6 +3,9 @@ name: publish
 # Publishes a release to the TYPO3 Extension Repository (TER) when a version tag
 # (e.g. 12.0.1) is pushed. The package is the git archive of the tag, the same
 # content Packagist distributes (Build/, Tests/, .github/ are export-ignored).
+# An existing tag can be published by hand: Actions -> publish -> Run workflow,
+# e.g. if the upload failed. That run uses this file from the chosen branch,
+# but the package and the comment from the tag.
 #
 # Requires the repository secret TYPO3_API_TOKEN, created with
 #   tailor ter:token:create --name="github pageclasses" --extensions=pageclasses
@@ -12,19 +15,29 @@ on:
   push:
     tags:
       - '[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing version tag to publish, e.g. 12.0.1'
+        required: true
 
 permissions:
   contents: read
 
 jobs:
   publish:
-    name: publish ${{ github.ref_name }} to TER
+    name: publish ${{ inputs.tag || github.ref_name }} to TER
     runs-on: ubuntu-latest
     env:
-      VERSION: ${{ github.ref_name }}
+      VERSION: ${{ inputs.tag || github.ref_name }}
     steps:
+      - name: Check the version format
+        run: |
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Not a version tag: $VERSION" >&2; exit 1; }
+
       - uses: actions/checkout@v4
         with:
+          ref: refs/tags/${{ env.VERSION }}
           fetch-depth: 0
 
       - name: Check that the tag matches the version in ext_emconf.php
@@ -56,4 +69,4 @@ jobs:
           TYPO3_API_TOKEN: ${{ secrets.TYPO3_API_TOKEN }}
         run: |
           "$(composer global config bin-dir --absolute --quiet)/tailor" ter:publish "$VERSION" pageclasses \
-            --artefact="$RUNNER_TEMP/pageclasses_$VERSION.zip" --comment "$COMMENT"
+            --artefact="$RUNNER_TEMP/pageclasses_$VERSION.zip" --comment="$COMMENT"
