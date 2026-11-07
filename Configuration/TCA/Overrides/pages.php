@@ -41,13 +41,23 @@ $temporaryColumns = [
             'type' => 'check',
         ],
     ],
+    // read-only list of the classes from the page tree, no database field
+    'tx_pageclasses_info' => [
+        'exclude' => 1,
+        'l10n_mode' => 'exclude',
+        'label' => $languageFile . 'pages.tx_pageclasses_info',
+        'config' => [
+            'type' => 'none',
+            'renderType' => 'pageclassesBodyClassInfo',
+        ],
+    ],
 ];
 
 ExtensionManagementUtility::addTCAcolumns('pages', $temporaryColumns);
 ExtensionManagementUtility::addFieldsToPalette(
     'pages',
     $paletteName,
-    'tx_pageclasses_css_classes, tx_pageclasses_css_classes_subpages, --linebreak--, tx_pageclasses_stop_css_inheritance,'
+    'tx_pageclasses_css_classes, tx_pageclasses_css_classes_subpages, --linebreak--, tx_pageclasses_stop_css_inheritance, --linebreak--, tx_pageclasses_info,'
 );
 
 // Doktypes without a "layout" field get the palette in front of the backend layout instead.
@@ -63,5 +73,3 @@ ExtensionManagementUtility::addToAllTCAtypes(
     '',
     'before:layout'
 );
-
-$GLOBALS['TCA']['pages']['palettes'][$paletteName]['canNotCollapse'] = 1;

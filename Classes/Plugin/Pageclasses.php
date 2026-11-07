@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace SvenT\Pageclasses\Plugin;
 
 use Psr\Http\Message\ServerRequestInterface;
+use SvenT\Pageclasses\Service\BodyClassResolver;
+use TYPO3\CMS\Core\Attribute\AsAllowedCallable;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Page\PageInformation;
@@ -51,13 +53,16 @@ class Pageclasses
      * The main method of the plugin, returning the complete body tag.
      *
      * Called through ContentObjectRenderer::callUserFunction(), which passes
-     * the current request as third argument since TYPO3 v12.
+     * the current request as third argument since TYPO3 v12. TYPO3 v14 only
+     * calls methods marked with #[AsAllowedCallable] (Breaking #108054); the
+     * attribute is backported to v12.4 and v13.4 as a no-op.
      *
      * @param string $content The PlugIn content
      * @param array<string, mixed> $conf The PlugIn configuration
      * @param ServerRequestInterface|null $request The current frontend request
      * @return string The body tag that is displayed on the website
      */
+    #[AsAllowedCallable]
     public function main(string $content, array $conf, ?ServerRequestInterface $request = null): string
     {
         $request ??= $GLOBALS['TYPO3_REQUEST'] ?? null;
@@ -66,69 +71,12 @@ class Pageclasses
             return '<body>';
         }
 
-        // init
         $pageClasses = [];
-        $frontendLayout = null;
-        $backendLayout = null;
-        $stopCssInheritance = false;
-        $addBackendLayoutClass = (bool)($conf['addBackendLayoutClass'] ?? false);
-
-        // get global class from ts config
-        foreach (GeneralUtility::trimExplode(' ', (string)($conf['defaultCssClass'] ?? ''), true) as $class) {
-            $pageClasses[$class] = $this->escape($class);
-        }
-
-        // step through rootline, to find inherited css classes
-        foreach ($pageContext['rootLine'] as $page) {
-            // current page
-            if ((int)($page['uid'] ?? 0) === $pageContext['id']) {
-                // use current page record directly (to include fields, not in rootline pages array)
-                $page = $pageContext['page'];
-
-                // first of all: add class for frontend layout
-                if (($conf['addFrontendLayoutClass'] ?? false) && isset($page['layout'])) {
-                    $frontendLayout = 'layout_' . $page['layout'];
-                }
-
-                // if set, add backendLayout
-                if ($addBackendLayoutClass && !empty($page['backend_layout'])) {
-                    $backendLayout = 'backend_layout_' . $page['backend_layout'];
-                }
-
-                // current pages css classes are set - add them
-                foreach (GeneralUtility::trimExplode(' ', (string)($page['tx_pageclasses_css_classes'] ?? ''), true) as $class) {
-                    $pageClasses[$class] = $this->escape($class);
-                }
-            } else {
-                // collect classes from parent pages - add dedicated subpages classes
-                if (!$stopCssInheritance) {
-                    foreach (GeneralUtility::trimExplode(' ', (string)($page['tx_pageclasses_css_classes_subpages'] ?? ''), true) as $class) {
-                        $pageClasses[$class] = $this->escape($class);
-                    }
-                }
-
-                if ($addBackendLayoutClass && empty($backendLayout) && !empty($page['backend_layout_next_level'])) {
-                    $backendLayout = 'backend_layout_' . $page['backend_layout_next_level'];
-                }
-            }
-
-            // inheritance is stopped - collect nothing but the backend layout from here on
-            if ((int)($page['tx_pageclasses_stop_css_inheritance'] ?? 0) === 1) {
-                $stopCssInheritance = true;
-            }
-
-            // we're done
-            if ($stopCssInheritance && (!$addBackendLayoutClass || !empty($backendLayout))) {
-                break;
-            }
-        }
-
-        if (!empty($frontendLayout)) {
-            $pageClasses[$frontendLayout] = $this->escape($frontendLayout);
-        }
-
-        if (!empty($backendLayout)) {
-            $pageClasses[$backendLayout] = $this->escape($backendLayout);
+        $resolved = GeneralUtility::makeInstance(BodyClassResolver::class)
+            ->resolve($pageContext['id'], $pageContext['page'], $pageContext['rootLine'], $conf);
+        foreach (array_keys($resolved['classes']) as $class) {
+            // numeric class names come back as int keys
+            $pageClasses[$class] = $this->escape((string)$class);
         }
 
         // call hooks
@@ -148,9 +96,11 @@ class Pageclasses
      * Reads the current page id, the current page record and the rootline
      * from the request.
      *
-     * TYPO3 v13 exposes them as the 'frontend.page.information' attribute. On
-     * v12 that attribute does not exist yet, so the values are taken from the
-     * frontend controller, which holds them as public properties there.
+     * TYPO3 v13 and v14 expose them as the 'frontend.page.information'
+     * attribute. On v12 that attribute does not exist yet, so the values are
+     * taken from the frontend controller, which holds them as public
+     * properties there. On v14 the controller class no longer exists, so the
+     * instanceof check is simply false there.
      *
      * @return array{id: int, page: array<string, mixed>, rootLine: array<int, array<string, mixed>>}|null
      */

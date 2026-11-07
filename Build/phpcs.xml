@@ -7,7 +7,6 @@
     <file>../Tests</file>
     <file>../ext_emconf.php</file>
     <file>../ext_localconf.php</file>
-    <file>../ext_tables.php</file>
 
     <arg name="extensions" value="php"/>
     <arg name="colors"/>

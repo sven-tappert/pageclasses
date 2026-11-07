@@ -7,13 +7,14 @@
 # (keep in sync with composer.json, ext_emconf.php and .github/workflows/tests.yml):
 #   TYPO3 12.4 LTS: PHP 8.1 - 8.4
 #   TYPO3 13.4 LTS: PHP 8.2 - 8.5
+#   TYPO3 14.3 LTS: PHP 8.2 - 8.5
 set -uo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 RUN=Build/Scripts/runTests.sh
-TYPO3_VERSIONS=(12 13)
+TYPO3_VERSIONS=(12 13 14)
 PHP_VERSIONS=(8.1 8.2 8.3 8.4 8.5)
-EXCLUDE=("12 8.5" "13 8.1")
+EXCLUDE=("12 8.5" "13 8.1" "14 8.1")
 
 results=()
 fail=0

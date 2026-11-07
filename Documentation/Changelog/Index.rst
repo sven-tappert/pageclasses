@@ -4,6 +4,36 @@
 Changelog
 =========
 
+..  _changelog-13-2-0:
+
+13.2.0
+======
+
+*   [FEATURE] Compatibility with TYPO3 14.3 LTS, while TYPO3 12.4 and 13.4
+    LTS keep working. PHP 8.1 - 8.5 (as supported by the respective TYPO3
+    version). No change in behaviour.
+*   [TASK] Prepared the code for TYPO3 14 without changing its behaviour:
+    the plugin method is marked with ``#[AsAllowedCallable]``, the empty
+    ``ext_tables.php`` is gone, the obsolete palette option ``canNotCollapse``
+    is removed, ``composer.json`` carries the extension title, version and
+    ``providesPackages`` for classic-mode installations, and
+    ``typo3/cms-backend`` is required explicitly. PHPStan now runs with the
+    deprecation rules.
+
+..  _changelog-13-1-0:
+
+13.1.0
+======
+
+*   [FEATURE] New read-only field "CSS classes from the page tree" in the
+    page properties, section "Body Tag CSS". It lists the classes the page
+    gets from its own fields and from its parent pages, with the page each
+    class comes from, and the page where the inheritance stops. Editors
+    need the field in "Allowed excludefields" of their backend user group.
+*   [TASK] Moved the calculation of the classes from the plugin to the
+    service ``SvenT\Pageclasses\Service\BodyClassResolver``, which the
+    plugin and the new field share. The rendered body tag is unchanged.
+
 ..  _changelog-13-0-0:
 
 13.0.0

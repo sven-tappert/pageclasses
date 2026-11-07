@@ -7,15 +7,15 @@
     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
                interlink-shortcode="svent/pageclasses"
                edit-on-github="sven-tappert/pageclasses"
-               edit-on-github-branch="main"
+               edit-on-github-branch="13.x"
                project-home="https://extensions.typo3.org/extension/pageclasses"
                project-repository="https://github.com/sven-tappert/pageclasses"
                project-issues="https://github.com/sven-tappert/pageclasses/issues"
                typo3-core-preferred="13.4"
     />
     <project title="Pagewide CSS classes"
-             release="13.0.0"
-             version="13.0"
+             release="13.2.0"
+             version="13.2"
              copyright="since 2015 by Sven Tappert"
     />
 </guides>

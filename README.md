@@ -19,10 +19,10 @@ or install the extension `pageclasses` from the
 [TYPO3 Extension Repository](https://extensions.typo3.org/extension/pageclasses),
 then include the static template "Pagewide CSS Classes (pageclasses)".
 
-| Version | TYPO3      | PHP       |
-|---------|------------|-----------|
-| 13.x    | 12.4, 13.4 | 8.1 - 8.5 |
-| 12.x    | 11.5, 12.4 | 7.4 - 8.4 |
+| Version | TYPO3            | PHP       |
+|---------|------------------|-----------|
+| 13.x    | 12.4, 13.4, 14.3 | 8.1 - 8.5 |
+| 12.x    | 11.5, 12.4       | 7.4 - 8.4 |
 
 ## Documentation
 
@@ -39,7 +39,7 @@ The common tasks are available as Composer scripts (`composer list` shows
 them all, `Build/Scripts/runTests.sh -h` explains the options):
 
 ```bash
-composer test                                 # lint, PHPStan, functional tests
+composer test                                 # lint, PHPStan, PHPCompatibility, functional tests
 composer test:functional -- -p 8.2 -t 12      # one check for another TYPO3/PHP combination
 composer test:all                             # all checks, all combinations
 composer docs:render                          # render the documentation

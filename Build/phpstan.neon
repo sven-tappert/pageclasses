@@ -1,5 +1,6 @@
 includes:
     - ../.Build/vendor/saschaegerer/phpstan-typo3/extension.neon
+    - ../.Build/vendor/phpstan/phpstan-deprecation-rules/rules.neon
 
 parameters:
     level: 5
@@ -8,5 +9,4 @@ parameters:
         - ../Configuration
         - ../Tests
         - ../ext_localconf.php
-        - ../ext_tables.php
     tmpDir: ../.Build/.cache/phpstan

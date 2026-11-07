@@ -17,8 +17,35 @@
 			</trans-unit> 
 			<trans-unit id="pages.tx_pageclasses_stop_css_inheritance">
 				<source>Don't inherit CSS class from parent</source>
-			</trans-unit> 
-			
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info">
+				<source>CSS classes from the page tree</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.class">
+				<source>Class</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.source">
+				<source>Source</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.source.page">
+				<source>This page</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.source.parent">
+				<source>Inherited from page %s</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.noClasses">
+				<source>No CSS classes from the page tree.</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.stopped.page">
+				<source>This page does not inherit CSS classes from its parent pages.</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.stopped.parent">
+				<source>Inheritance stops at page %s. Pages above it pass on no CSS classes.</source>
+			</trans-unit>
+			<trans-unit id="pages.tx_pageclasses_info.note">
+				<source>Shows the saved state. Not included: classes from TypoScript (defaultCssClass, frontend and backend layout) and from hooks.</source>
+			</trans-unit>
+
 		</body>
 	</file>
 	

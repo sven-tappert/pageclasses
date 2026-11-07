@@ -22,6 +22,14 @@ The fields are in the page properties, tab :guilabel:`Appearance`, section
     The page (and the pages below it) do not get the subpage classes of the
     parent pages.
 
+:guilabel:`CSS classes from the page tree`
+    Read-only. Lists the classes the page gets from the three fields above:
+    its own classes and the subpage classes inherited from parent pages, each
+    with the page it comes from, and the page where the inheritance stops.
+    It shows the saved state. Classes from TypoScript
+    (:confval:`defaultCssClass <constants-defaultcssclass>`, frontend and
+    backend layout) and from hooks are not included.
+
 The fields can be excluded for editors in the backend user group settings
 (:guilabel:`Allowed excludefields`).
 

@@ -10,14 +10,16 @@ every page, so you can see whether the extension renders the body tag at all.
 Reload the frontend and check the source code after every step.
 
 #.  Make sure the extension is installed and the database fields exist
-    (:guilabel:`Admin Tools > Maintenance > Analyze Database Structure`).
+    (:guilabel:`Admin Tools > Maintenance > Analyze Database Structure`, in
+    TYPO3 14 :guilabel:`System > Maintenance > Analyze Database Structure`).
 
 #.  Make sure the static template :guilabel:`Pagewide CSS Classes (pageclasses)`
     is included in your main TypoScript template (see
     :ref:`installation-typoscript`). Check it with
     :guilabel:`Included TypoScript` in the TypoScript module
     (:guilabel:`Web > Template` in TYPO3 12,
-    :guilabel:`Site Management > TypoScript` in TYPO3 13).
+    :guilabel:`Site Management > TypoScript` in TYPO3 13,
+    :guilabel:`Sites > TypoScript` in TYPO3 14).
 
 #.  ``page.bodyTagCObject`` may be set by another extension or by your own
     TypoScript. Find out with :guilabel:`Active TypoScript` in the same
