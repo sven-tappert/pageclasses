@@ -39,7 +39,7 @@ The common tasks are available as Composer scripts (`composer list` shows
 them all, `Build/Scripts/runTests.sh -h` explains the options):
 
 ```bash
-composer test                                 # lint, PHPStan, functional tests
+composer test                                 # lint, PHPStan, PHPCompatibility, functional tests
 composer test:functional -- -p 8.2 -t 12      # one check for another TYPO3/PHP combination
 composer test:all                             # all checks, all combinations
 composer docs:render                          # render the documentation

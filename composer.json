@@ -77,6 +77,7 @@
         "test": [
             "@test:lint",
             "@test:phpstan",
+            "@test:phpcompat",
             "@test:functional"
         ],
         "test:all": "Build/Scripts/testMatrix.sh",
@@ -89,7 +90,7 @@
         "deps:install": "Install the dependencies in .Build/ (default PHP 8.4, other versions: -- -p 8.2 -t 12)",
         "docs:render": "Render Documentation/ to Documentation-GENERATED-temp/",
         "hooks:install": "Activate the pre-commit hook in .githooks/",
-        "test": "Lint, PHPStan and functional tests for the installed TYPO3/PHP combination",
+        "test": "Lint, PHPStan, PHPCompatibility and functional tests for the installed TYPO3/PHP combination",
         "test:all": "All checks for every supported TYPO3/PHP combination",
         "test:functional": "Functional tests (other versions: -- -p 8.2 -t 12)",
         "test:lint": "PHP syntax check (other version: -- -p 8.2)",
