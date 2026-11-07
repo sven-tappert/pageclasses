@@ -9,6 +9,9 @@ Changelog
 13.2.0
 ======
 
+*   [FEATURE] Compatibility with TYPO3 14.3 LTS, while TYPO3 12.4 and 13.4
+    LTS keep working. PHP 8.1 - 8.5 (as supported by the respective TYPO3
+    version). No change in behaviour.
 *   [TASK] Prepared the code for TYPO3 14 without changing its behaviour:
     the plugin method is marked with ``#[AsAllowedCallable]``, the empty
     ``ext_tables.php`` is gone, the obsolete palette option ``canNotCollapse``

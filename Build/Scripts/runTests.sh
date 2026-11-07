@@ -14,7 +14,7 @@
 #      functional      functional tests (Build/phpunit/FunctionalTests*.xml), SQLite
 #      docs            render Documentation/ with the official TYPO3 render-guides container
 #   -p <php>           PHP version: 8.1, 8.2, 8.3, 8.4, 8.5
-#   -t <typo3>         TYPO3 major version: 12, 13
+#   -t <typo3>         TYPO3 major version: 12, 13, 14
 #   -- <arguments>     passed on to phpunit/phpstan/phpcs, e.g. -- --display-deprecations
 #
 # Without -p/-t the combination of the last composerUpdate is used (.Build/.installed),
@@ -66,6 +66,7 @@ case $TYPO3_VERSION in
   # PHPUnit is fixed per TYPO3 version, so it always matches its config in Build/phpunit/
   12) CORE_CONSTRAINT='^12.4' PHPUNIT_CONSTRAINT='^10.5' ;;
   13) CORE_CONSTRAINT='^13.4' PHPUNIT_CONSTRAINT='^11.5' ;;
+  14) CORE_CONSTRAINT='^14.3' PHPUNIT_CONSTRAINT='^11.5' ;;
   *) echo "Unsupported TYPO3 version: $TYPO3_VERSION" >&2; exit 1 ;;
 esac
 
@@ -96,6 +97,7 @@ case $SUITE in
     run env COMPOSER_NO_BLOCKING=1 COMPOSER_NO_SECURITY_BLOCKING=1 COMPOSER_NO_AUDIT=1 \
       composer update --no-progress --no-interaction \
       --with "typo3/cms-core:$CORE_CONSTRAINT" --with "typo3/cms-frontend:$CORE_CONSTRAINT" \
+      --with "typo3/cms-backend:$CORE_CONSTRAINT" \
       --with "phpunit/phpunit:$PHPUNIT_CONSTRAINT"
     # remember the combination and the composer.json it was installed for
     echo "$PHP_VERSION $TYPO3_VERSION" > "$ROOT/.Build/.installed"

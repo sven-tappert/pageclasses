@@ -96,9 +96,11 @@ class Pageclasses
      * Reads the current page id, the current page record and the rootline
      * from the request.
      *
-     * TYPO3 v13 exposes them as the 'frontend.page.information' attribute. On
-     * v12 that attribute does not exist yet, so the values are taken from the
-     * frontend controller, which holds them as public properties there.
+     * TYPO3 v13 and v14 expose them as the 'frontend.page.information'
+     * attribute. On v12 that attribute does not exist yet, so the values are
+     * taken from the frontend controller, which holds them as public
+     * properties there. On v14 the controller class no longer exists, so the
+     * instanceof check is simply false there.
      *
      * @return array{id: int, page: array<string, mixed>, rootLine: array<int, array<string, mixed>>}|null
      */

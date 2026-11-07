@@ -19,10 +19,10 @@ or install the extension `pageclasses` from the
 [TYPO3 Extension Repository](https://extensions.typo3.org/extension/pageclasses),
 then include the static template "Pagewide CSS Classes (pageclasses)".
 
-| Version | TYPO3      | PHP       |
-|---------|------------|-----------|
-| 13.x    | 12.4, 13.4 | 8.1 - 8.5 |
-| 12.x    | 11.5, 12.4 | 7.4 - 8.4 |
+| Version | TYPO3            | PHP       |
+|---------|------------------|-----------|
+| 13.x    | 12.4, 13.4, 14.3 | 8.1 - 8.5 |
+| 12.x    | 11.5, 12.4       | 7.4 - 8.4 |
 
 ## Documentation
 
