@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!--
-    Functional tests of EXT:pageclasses for PHPUnit 11 (TYPO3 13).
+    Functional tests of EXT:pageclasses (PHPUnit 11).
     Run with Build/Scripts/runTests.sh -s functional, which provides the environment
-    (SQLite, TYPO3_PATH_ROOT). See FunctionalTestsPhpUnit10.xml for TYPO3 12.
+    (SQLite, TYPO3_PATH_ROOT).
 
     Every notice, warning and deprecation caused by the code of the extension fails
     the run. Deprecations raised inside TYPO3 itself are not counted.

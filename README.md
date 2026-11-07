@@ -21,6 +21,7 @@ then include the static template "Pagewide CSS Classes (pageclasses)".
 
 | Version | TYPO3            | PHP       |
 |---------|------------------|-----------|
+| 14.x    | 14.3             | 8.2 - 8.5 |
 | 13.x    | 12.4, 13.4, 14.3 | 8.1 - 8.5 |
 | 12.x    | 11.5, 12.4       | 7.4 - 8.4 |
 
@@ -40,7 +41,7 @@ them all, `Build/Scripts/runTests.sh -h` explains the options):
 
 ```bash
 composer test                                 # lint, PHPStan, PHPCompatibility, functional tests
-composer test:functional -- -p 8.2 -t 12      # one check for another TYPO3/PHP combination
+composer test:functional -- -p 8.2           # one check for another PHP version
 composer test:all                             # all checks, all combinations
 composer docs:render                          # render the documentation
 composer deps:install                         # (re)install the dependencies in .Build/

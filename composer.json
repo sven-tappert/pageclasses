@@ -24,20 +24,20 @@
         "docs": "https://docs.typo3.org/p/svent/pageclasses/main/en-us/"
     },
     "require": {
-        "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
-        "typo3/cms-backend": "^12.4 || ^13.4 || ^14.3",
-        "typo3/cms-core": "^12.4 || ^13.4 || ^14.3",
-        "typo3/cms-frontend": "^12.4 || ^13.4 || ^14.3"
+        "php": "~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
+        "typo3/cms-backend": "^14.3",
+        "typo3/cms-core": "^14.3",
+        "typo3/cms-frontend": "^14.3"
     },
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "phpcompatibility/php-compatibility": "^10.0.0@alpha",
-        "phpstan/phpstan": "^1.12 || ^2.1",
-        "phpstan/phpstan-deprecation-rules": "^1.2 || ^2.0",
-        "phpunit/phpunit": "^10.5 || ^11.5",
-        "saschaegerer/phpstan-typo3": "^1.10 || ^3.0",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpunit/phpunit": "^11.5",
+        "saschaegerer/phpstan-typo3": "^3.0.1",
         "squizlabs/php_codesniffer": "^3.13",
-        "typo3/testing-framework": "^8.3 || ^9.7"
+        "typo3/testing-framework": "^9.7"
     },
     "autoload": {
         "psr-4": {
@@ -87,14 +87,14 @@
         "test:phpstan": "Build/Scripts/runTests.sh -s phpstan"
     },
     "scripts-descriptions": {
-        "deps:install": "Install the dependencies in .Build/ (default PHP 8.4, other versions: -- -p 8.2 -t 12)",
+        "deps:install": "Install the dependencies in .Build/ (default PHP 8.4, other version: -- -p 8.2)",
         "docs:render": "Render Documentation/ to Documentation-GENERATED-temp/",
         "hooks:install": "Activate the pre-commit hook in .githooks/",
         "test": "Lint, PHPStan, PHPCompatibility and functional tests for the installed TYPO3/PHP combination",
         "test:all": "All checks for every supported TYPO3/PHP combination",
-        "test:functional": "Functional tests (other versions: -- -p 8.2 -t 12)",
+        "test:functional": "Functional tests (other version: -- -p 8.2)",
         "test:lint": "PHP syntax check (other version: -- -p 8.2)",
         "test:phpcompat": "PHPCompatibility for the whole supported PHP range",
-        "test:phpstan": "PHPStan (other versions: -- -p 8.2 -t 12)"
+        "test:phpstan": "PHPStan (other version: -- -p 8.2)"
     }
 }

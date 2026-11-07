@@ -55,24 +55,11 @@ class BodyClassInfoElement extends AbstractFormElement
     ];
 
     /**
-     * Called by the NodeFactory. TYPO3 v13 has this method in AbstractNode, on v12
-     * the NodeFactory only uses it if the element provides it.
-     *
-     * @param array<string, mixed> $data
-     */
-    public function setData(array $data): void
-    {
-        $this->data = $data;
-    }
-
-    /**
      * @return array<string, mixed>
      */
     public function render(): array
     {
         $resultArray = $this->initializeResultArray();
-        // Needed on v12 only, where the container renders the label otherwise
-        $resultArray['labelHasBeenHandled'] = true;
 
         // effectivePid is the live record of the default language when a page is edited,
         // and the parent page when a new page is created

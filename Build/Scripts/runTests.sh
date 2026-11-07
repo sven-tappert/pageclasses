@@ -13,13 +13,13 @@
 #      phpstan         PHPStan (Build/phpstan.neon, or Build/phpstan-typo3-<t>.neon if present)
 #      functional      functional tests (Build/phpunit/FunctionalTests*.xml), SQLite
 #      docs            render Documentation/ with the official TYPO3 render-guides container
-#   -p <php>           PHP version: 8.1, 8.2, 8.3, 8.4, 8.5
-#   -t <typo3>         TYPO3 major version: 12, 13, 14
+#   -p <php>           PHP version: 8.2, 8.3, 8.4, 8.5
+#   -t <typo3>         TYPO3 major version: 14
 #   -- <arguments>     passed on to phpunit/phpstan/phpcs, e.g. -- --display-deprecations
 #
 # Without -p/-t the combination of the last composerUpdate is used (.Build/.installed),
 # as long as composer.json did not change since (e.g. by switching branches);
-# otherwise, and for composerUpdate itself, PHP 8.4 / TYPO3 13.
+# otherwise, and for composerUpdate itself, PHP 8.4 / TYPO3 14.
 # phpstan, functional and phpcompat run composerUpdate first if the dependencies
 # are not installed for the requested combination (log: .Build/composerUpdate.log).
 set -euo pipefail
@@ -56,16 +56,14 @@ if [ "$SUITE" != composerUpdate ] && [ -n "$installed" ]; then
   TYPO3_VERSION=${TYPO3_VERSION:-$installed_typo3}
 fi
 PHP_VERSION=${PHP_VERSION:-8.4}
-TYPO3_VERSION=${TYPO3_VERSION:-13}
+TYPO3_VERSION=${TYPO3_VERSION:-14}
 
 case $PHP_VERSION in
-  8.1|8.2|8.3|8.4|8.5) ;;
+  8.2|8.3|8.4|8.5) ;;
   *) echo "Unsupported PHP version: $PHP_VERSION" >&2; exit 1 ;;
 esac
 case $TYPO3_VERSION in
   # PHPUnit is fixed per TYPO3 version, so it always matches its config in Build/phpunit/
-  12) CORE_CONSTRAINT='^12.4' PHPUNIT_CONSTRAINT='^10.5' ;;
-  13) CORE_CONSTRAINT='^13.4' PHPUNIT_CONSTRAINT='^11.5' ;;
   14) CORE_CONSTRAINT='^14.3' PHPUNIT_CONSTRAINT='^11.5' ;;
   *) echo "Unsupported TYPO3 version: $TYPO3_VERSION" >&2; exit 1 ;;
 esac
@@ -91,11 +89,7 @@ run() {
 case $SUITE in
   composerUpdate)
     rm -rf "$ROOT/.Build/vendor" "$ROOT/.Build/public" "$ROOT/.Build/bin" "$ROOT/composer.lock"
-    # Public releases of TYPO3 12.4 (out of free maintenance) carry
-    # security advisories, which Composer >= 2.9 refuses to install by default.
-    # They are installed here only as test targets.
-    run env COMPOSER_NO_BLOCKING=1 COMPOSER_NO_SECURITY_BLOCKING=1 COMPOSER_NO_AUDIT=1 \
-      composer update --no-progress --no-interaction \
+    run composer update --no-progress --no-interaction \
       --with "typo3/cms-core:$CORE_CONSTRAINT" --with "typo3/cms-frontend:$CORE_CONSTRAINT" \
       --with "typo3/cms-backend:$CORE_CONSTRAINT" \
       --with "phpunit/phpunit:$PHPUNIT_CONSTRAINT"
@@ -122,15 +116,12 @@ case $SUITE in
     if [ "$SUITE" = phpcompat ]; then
       run .Build/bin/phpcs --standard=Build/phpcs.xml "${EXTRA[@]}"
     elif [ "$SUITE" = phpstan ]; then
-      # a version specific config (e.g. ignoring the v13 API on v12) includes the common one
+      # a version specific config (Build/phpstan-typo3-<t>.neon) includes the common one
       config=Build/phpstan.neon
       [ -f "$ROOT/Build/phpstan-typo3-$TYPO3_VERSION.neon" ] && config=Build/phpstan-typo3-$TYPO3_VERSION.neon
       run .Build/bin/phpstan analyse --no-progress --memory-limit=1G -c "$config" "${EXTRA[@]}"
     else
-      # TYPO3 12 is tested with PHPUnit 10, TYPO3 13 with PHPUnit 11
-      config=Build/phpunit/FunctionalTests.xml
-      [ "$TYPO3_VERSION" = 12 ] && config=Build/phpunit/FunctionalTestsPhpUnit10.xml
-      run .Build/bin/phpunit -c "$config" "${EXTRA[@]}"
+      run .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml "${EXTRA[@]}"
     fi
     ;;
   docs)

@@ -4,6 +4,17 @@
 Changelog
 =========
 
+..  _changelog-14-0-0:
+
+14.0.0
+======
+
+*   [!!!] Dropped support for TYPO3 12.4 and 13.4 LTS; this version requires
+    TYPO3 14.3 LTS and PHP 8.2 - 8.5. Sites on TYPO3 12 or 13 stay on
+    version 13.x, which also runs on TYPO3 14.3 for the core upgrade. No
+    change in behaviour: the code paths for the older cores are removed.
+*   Includes all changes of 13.2.0.
+
 ..  _changelog-13-2-0:
 
 13.2.0

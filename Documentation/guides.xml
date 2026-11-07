@@ -7,11 +7,11 @@
     <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
                interlink-shortcode="svent/pageclasses"
                edit-on-github="sven-tappert/pageclasses"
-               edit-on-github-branch="13.x"
+               edit-on-github-branch="main"
                project-home="https://extensions.typo3.org/extension/pageclasses"
                project-repository="https://github.com/sven-tappert/pageclasses"
                project-issues="https://github.com/sven-tappert/pageclasses/issues"
-               typo3-core-preferred="13.4"
+               typo3-core-preferred="14.3"
     />
     <project title="Pagewide CSS classes"
              release="13.2.0"

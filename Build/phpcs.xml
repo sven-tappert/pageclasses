@@ -13,6 +13,6 @@
     <arg value="sp"/>
 
     <!-- keep in sync with the "php" constraint in composer.json / ext_emconf.php -->
-    <config name="testVersion" value="8.1-8.5"/>
+    <config name="testVersion" value="8.2-8.5"/>
     <rule ref="PHPCompatibility"/>
 </ruleset>

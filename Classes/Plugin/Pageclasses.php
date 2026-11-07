@@ -8,7 +8,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use SvenT\Pageclasses\Service\BodyClassResolver;
 use TYPO3\CMS\Core\Attribute\AsAllowedCallable;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 
 /***************************************************************
@@ -53,9 +52,8 @@ class Pageclasses
      * The main method of the plugin, returning the complete body tag.
      *
      * Called through ContentObjectRenderer::callUserFunction(), which passes
-     * the current request as third argument since TYPO3 v12. TYPO3 v14 only
-     * calls methods marked with #[AsAllowedCallable] (Breaking #108054); the
-     * attribute is backported to v12.4 and v13.4 as a no-op.
+     * the current request as third argument and only calls methods marked
+     * with #[AsAllowedCallable] (Breaking #108054).
      *
      * @param string $content The PlugIn content
      * @param array<string, mixed> $conf The PlugIn configuration
@@ -94,39 +92,22 @@ class Pageclasses
 
     /**
      * Reads the current page id, the current page record and the rootline
-     * from the request.
-     *
-     * TYPO3 v13 and v14 expose them as the 'frontend.page.information'
-     * attribute. On v12 that attribute does not exist yet, so the values are
-     * taken from the frontend controller, which holds them as public
-     * properties there. On v14 the controller class no longer exists, so the
-     * instanceof check is simply false there.
+     * from the request attribute 'frontend.page.information'.
      *
      * @return array{id: int, page: array<string, mixed>, rootLine: array<int, array<string, mixed>>}|null
      */
     private function resolvePageContext(ServerRequestInterface $request): ?array
     {
-        // TYPO3 v13 and above
         $pageInformation = $request->getAttribute('frontend.page.information');
-        if ($pageInformation instanceof PageInformation) {
-            return [
-                'id' => $pageInformation->getId(),
-                'page' => $pageInformation->getPageRecord(),
-                'rootLine' => $pageInformation->getRootLine(),
-            ];
+        if (!$pageInformation instanceof PageInformation) {
+            return null;
         }
 
-        // TYPO3 v12 fallback - drop together with v12 support
-        $controller = $request->getAttribute('frontend.controller');
-        if ($controller instanceof TypoScriptFrontendController) {
-            return [
-                'id' => $controller->id,
-                'page' => (array)$controller->page,
-                'rootLine' => $controller->rootLine,
-            ];
-        }
-
-        return null;
+        return [
+            'id' => $pageInformation->getId(),
+            'page' => $pageInformation->getPageRecord(),
+            'rootLine' => $pageInformation->getRootLine(),
+        ];
     }
 
     private function escape(string $class): string

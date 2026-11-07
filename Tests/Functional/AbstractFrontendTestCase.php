@@ -12,10 +12,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 /**
  * Renders pages of the fixture page tree (Fixtures/pages.csv) in the frontend
  * and returns the CSS classes of the rendered body tag.
- *
- * The properties of FunctionalTestCase are untyped in testing-framework 7
- * (TYPO3 11) and typed in testing-framework 8 (TYPO3 12), so they are set in
- * setUp() instead of being redeclared.
  */
 abstract class AbstractFrontendTestCase extends FunctionalTestCase
 {
@@ -47,7 +43,6 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
         $this->setUpFrontendRootPage(
             1,
             ['setup' => ['EXT:pageclasses/Tests/Functional/Fixtures/TypoScript/setup.typoscript']],
-            // the trailing line break matters: testing-framework 7 appends its own constants
             ['constants' => "@import 'EXT:pageclasses/Configuration/TypoScript/constants.typoscript'\n" . $this->constants . "\n"]
         );
     }

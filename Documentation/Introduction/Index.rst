@@ -44,7 +44,7 @@ Screenshots
 ===========
 
 ..  TODO: The screenshots show the backend of TYPO3 9/10. Replace them with
-    screenshots of TYPO3 13 (sources in Build/Sources/Documentation/Images/).
+    screenshots of TYPO3 14 (sources in Build/Sources/Documentation/Images/).
 
 ..  figure:: /Images/screenshot1.png
     :alt: Tab "Appearance" of the page properties with the fields "BodyTag CSS Classes", "BodyTag CSS Classes for Subpages" and "Don't inherit CSS class from parent"

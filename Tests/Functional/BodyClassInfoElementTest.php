@@ -99,9 +99,7 @@ class BodyClassInfoElementTest extends FunctionalTestCase
             'fieldName' => 'tx_pageclasses_info',
             'parameterArray' => ['fieldConf' => ['label' => 'Info']],
         ]);
-        $result = $element->render();
-        self::assertTrue($result['labelHasBeenHandled']);
-        return (string)$result['html'];
+        return (string)$element->render()['html'];
     }
 
     /**

@@ -5,22 +5,20 @@
 #
 # Every TYPO3 version is crossed with every PHP version, minus EXCLUDE
 # (keep in sync with composer.json, ext_emconf.php and .github/workflows/tests.yml):
-#   TYPO3 12.4 LTS: PHP 8.1 - 8.4
-#   TYPO3 13.4 LTS: PHP 8.2 - 8.5
 #   TYPO3 14.3 LTS: PHP 8.2 - 8.5
 set -uo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")/../.."
 RUN=Build/Scripts/runTests.sh
-TYPO3_VERSIONS=(12 13 14)
-PHP_VERSIONS=(8.1 8.2 8.3 8.4 8.5)
-EXCLUDE=("12 8.5" "13 8.1" "14 8.1")
+TYPO3_VERSIONS=(14)
+PHP_VERSIONS=(8.2 8.3 8.4 8.5)
+EXCLUDE=()
 
 results=()
 fail=0
 excluded() { # excluded <typo3> <php>
   local e
-  for e in "${EXCLUDE[@]}"; do [ "$e" = "$1 $2" ] && return 0; done
+  for e in "${EXCLUDE[@]+"${EXCLUDE[@]}"}"; do [ "$e" = "$1 $2" ] && return 0; done
   return 1
 }
 check() { # check <label> <runTests args...>
@@ -42,7 +40,7 @@ for typo3 in "${TYPO3_VERSIONS[@]}"; do for php in "${PHP_VERSIONS[@]}"; do
   fi
 done; done
 # PHPCompatibility checks the whole PHP range at once (Build/phpcs.xml)
-check "phpcompat  PHP 8.1-8.5" -s phpcompat -p 8.5 -t 13
+check "phpcompat  PHP 8.2-8.5" -s phpcompat -p 8.5 -t 14
 check "docs" -s docs
 
 printf '\n##### Summary\n'
