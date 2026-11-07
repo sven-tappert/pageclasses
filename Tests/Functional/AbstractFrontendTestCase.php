@@ -73,7 +73,9 @@ abstract class AbstractFrontendTestCase extends FunctionalTestCase
     {
         $path = Environment::getConfigPath() . '/sites/main';
         GeneralUtility::mkdir_deep($path);
-        file_put_contents($path . '/config.yaml', <<<'YAML'
+        file_put_contents(
+            $path . '/config.yaml',
+            <<<'YAML'
 rootPageId: 1
 base: /
 languages:

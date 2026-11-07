@@ -43,6 +43,7 @@ for typo3 in "${TYPO3_VERSIONS[@]}"; do for php in "${PHP_VERSIONS[@]}"; do
 done; done
 # PHPCompatibility checks the whole PHP range at once (Build/phpcs.xml)
 check "phpcompat  PHP 8.1-8.5" -s phpcompat -p 8.5 -t 13
+check "cgl" -s cglCheck -p 8.5 -t 13
 check "docs" -s docs
 
 printf '\n##### Summary\n'

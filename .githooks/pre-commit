@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
 # Runs a quick subset of the checks before a commit is accepted:
-# lint, phpstan, PHPCompatibility and the functional tests for the TYPO3/PHP
-# combination installed in .Build/ (see runTests.sh -h), docs only if
+# lint, phpstan, PHPCompatibility, coding style and the functional tests for
+# the TYPO3/PHP combination installed in .Build/ (see runTests.sh -h), docs only if
 # Documentation/ is part of the commit. The full matrix runs in
 # Build/Scripts/testMatrix.sh and on GitHub.
 #
@@ -25,6 +25,7 @@ docker info > /dev/null 2>&1 || abort "docker is not running, the checks need it
 "$RUN" -s lint || abort "lint failed."
 "$RUN" -s phpstan || abort "phpstan failed."
 "$RUN" -s phpcompat || abort "PHPCompatibility failed."
+"$RUN" -s cglCheck || abort "coding style check failed, run \"composer cgl\"."
 "$RUN" -s functional || abort "functional tests failed."
 
 if git diff --cached --name-only | grep -q '^Documentation/'; then

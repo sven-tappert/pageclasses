@@ -11,6 +11,8 @@
 #      lint            php -l on all PHP files
 #      phpcompat       PHPCompatibility for the whole supported PHP range (Build/phpcs.xml)
 #      phpstan         PHPStan (Build/phpstan.neon, or Build/phpstan-typo3-<t>.neon if present)
+#      cgl             fix the coding style with PHP-CS-Fixer (.php-cs-fixer.dist.php, TYPO3 rules)
+#      cglCheck        same as a dry run with diff, fails on violations
 #      functional      functional tests (Build/phpunit/FunctionalTests*.xml), SQLite
 #      docs            render Documentation/ with the official TYPO3 render-guides container
 #   -p <php>           PHP version: 8.1, 8.2, 8.3, 8.4, 8.5
@@ -20,7 +22,7 @@
 # Without -p/-t the combination of the last composerUpdate is used (.Build/.installed),
 # as long as composer.json did not change since (e.g. by switching branches);
 # otherwise, and for composerUpdate itself, PHP 8.4 / TYPO3 13.
-# phpstan, functional and phpcompat run composerUpdate first if the dependencies
+# phpstan, functional, phpcompat and cgl run composerUpdate first if the dependencies
 # are not installed for the requested combination (log: .Build/composerUpdate.log).
 set -euo pipefail
 
@@ -112,7 +114,7 @@ case $SUITE in
       | xargs -0 -n1 -P4 php -d display_errors=1 -l >/dev/null \
       && echo "lint ok (PHP $(php -r "echo PHP_VERSION;"))"'
     ;;
-  phpcompat|phpstan|functional)
+  phpcompat|phpstan|functional|cgl|cglCheck)
     if [ "$installed" != "$PHP_VERSION $TYPO3_VERSION" ]; then
       echo "Installing the dependencies for TYPO3 $TYPO3_VERSION / PHP $PHP_VERSION first (log: .Build/composerUpdate.log) ..."
       "${BASH_SOURCE[0]}" -s composerUpdate -p "$PHP_VERSION" -t "$TYPO3_VERSION" > "$ROOT/.Build/composerUpdate.log" 2>&1 \
@@ -121,6 +123,10 @@ case $SUITE in
     echo "$SUITE: TYPO3 $TYPO3_VERSION / PHP $PHP_VERSION"
     if [ "$SUITE" = phpcompat ]; then
       run .Build/bin/phpcs --standard=Build/phpcs.xml "${EXTRA[@]}"
+    elif [ "$SUITE" = cgl ]; then
+      run .Build/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php "${EXTRA[@]}"
+    elif [ "$SUITE" = cglCheck ]; then
+      run .Build/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --dry-run --diff "${EXTRA[@]}"
     elif [ "$SUITE" = phpstan ]; then
       # a version specific config (e.g. ignoring the v13 API on v12) includes the common one
       config=Build/phpstan.neon

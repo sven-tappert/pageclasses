@@ -37,6 +37,7 @@
         "phpunit/phpunit": "^10.5 || ^11.5",
         "saschaegerer/phpstan-typo3": "^1.10 || ^3.0",
         "squizlabs/php_codesniffer": "^3.13",
+        "typo3/coding-standards": "^0.8 || ^0.9",
         "typo3/testing-framework": "^8.3 || ^9.7"
     },
     "autoload": {
@@ -71,6 +72,8 @@
         }
     },
     "scripts": {
+        "cgl": "Build/Scripts/runTests.sh -s cgl",
+        "cgl:check": "Build/Scripts/runTests.sh -s cglCheck",
         "deps:install": "Build/Scripts/runTests.sh -s composerUpdate",
         "docs:render": "Build/Scripts/runTests.sh -s docs",
         "hooks:install": "git config core.hooksPath .githooks",
@@ -78,6 +81,7 @@
             "@test:lint",
             "@test:phpstan",
             "@test:phpcompat",
+            "@cgl:check",
             "@test:functional"
         ],
         "test:all": "Build/Scripts/testMatrix.sh",
@@ -87,10 +91,12 @@
         "test:phpstan": "Build/Scripts/runTests.sh -s phpstan"
     },
     "scripts-descriptions": {
+        "cgl": "Fix the coding style (PHP-CS-Fixer with the TYPO3 Core rules)",
+        "cgl:check": "Check the coding style without changing files",
         "deps:install": "Install the dependencies in .Build/ (default PHP 8.4, other versions: -- -p 8.2 -t 12)",
         "docs:render": "Render Documentation/ to Documentation-GENERATED-temp/",
         "hooks:install": "Activate the pre-commit hook in .githooks/",
-        "test": "Lint, PHPStan, PHPCompatibility and functional tests for the installed TYPO3/PHP combination",
+        "test": "Lint, PHPStan, PHPCompatibility, coding style and functional tests for the installed TYPO3/PHP combination",
         "test:all": "All checks for every supported TYPO3/PHP combination",
         "test:functional": "Functional tests (other versions: -- -p 8.2 -t 12)",
         "test:lint": "PHP syntax check (other version: -- -p 8.2)",

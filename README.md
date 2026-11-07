@@ -42,6 +42,7 @@ them all, `Build/Scripts/runTests.sh -h` explains the options):
 composer test                                 # lint, PHPStan, PHPCompatibility, functional tests
 composer test:functional -- -p 8.2 -t 12      # one check for another TYPO3/PHP combination
 composer test:all                             # all checks, all combinations
+composer cgl                                  # fix the coding style (TYPO3 Core rules)
 composer docs:render                          # render the documentation
 composer deps:install                         # (re)install the dependencies in .Build/
 git commit --no-verify                        # skip the pre-commit checks once
