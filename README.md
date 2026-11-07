@@ -43,6 +43,7 @@ them all, `Build/Scripts/runTests.sh -h` explains the options):
 composer test                                 # lint, PHPStan, PHPCompatibility, functional tests
 composer test:functional -- -p 8.2           # one check for another PHP version
 composer test:all                             # all checks, all combinations
+composer cgl                                  # fix the coding style (TYPO3 Core rules)
 composer docs:render                          # render the documentation
 composer deps:install                         # (re)install the dependencies in .Build/
 git commit --no-verify                        # skip the pre-commit checks once
