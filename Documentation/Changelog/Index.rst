@@ -4,6 +4,19 @@
 Changelog
 =========
 
+..  _changelog-13-2-0:
+
+13.2.0
+======
+
+*   [TASK] Prepared the code for TYPO3 14 without changing its behaviour:
+    the plugin method is marked with ``#[AsAllowedCallable]``, the empty
+    ``ext_tables.php`` is gone, the obsolete palette option ``canNotCollapse``
+    is removed, ``composer.json`` carries the extension title, version and
+    ``providesPackages`` for classic-mode installations, and
+    ``typo3/cms-backend`` is required explicitly. PHPStan now runs with the
+    deprecation rules.
+
 ..  _changelog-13-1-0:
 
 13.1.0

@@ -6,6 +6,7 @@ namespace SvenT\Pageclasses\Plugin;
 
 use Psr\Http\Message\ServerRequestInterface;
 use SvenT\Pageclasses\Service\BodyClassResolver;
+use TYPO3\CMS\Core\Attribute\AsAllowedCallable;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Page\PageInformation;
@@ -52,13 +53,16 @@ class Pageclasses
      * The main method of the plugin, returning the complete body tag.
      *
      * Called through ContentObjectRenderer::callUserFunction(), which passes
-     * the current request as third argument since TYPO3 v12.
+     * the current request as third argument since TYPO3 v12. TYPO3 v14 only
+     * calls methods marked with #[AsAllowedCallable] (Breaking #108054); the
+     * attribute is backported to v12.4 and v13.4 as a no-op.
      *
      * @param string $content The PlugIn content
      * @param array<string, mixed> $conf The PlugIn configuration
      * @param ServerRequestInterface|null $request The current frontend request
      * @return string The body tag that is displayed on the website
      */
+    #[AsAllowedCallable]
     public function main(string $content, array $conf, ?ServerRequestInterface $request = null): string
     {
         $request ??= $GLOBALS['TYPO3_REQUEST'] ?? null;

@@ -73,5 +73,3 @@ ExtensionManagementUtility::addToAllTCAtypes(
     '',
     'before:layout'
 );
-
-$GLOBALS['TCA']['pages']['palettes'][$paletteName]['canNotCollapse'] = 1;
