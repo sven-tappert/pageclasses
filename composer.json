@@ -63,7 +63,7 @@
     "extra": {
         "typo3/cms": {
             "extension-key": "pageclasses",
-            "version": "13.2.0",
+            "version": "14.0.0",
             "Package": {
                 "providesPackages": {}
             },

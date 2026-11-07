@@ -14,8 +14,8 @@
                typo3-core-preferred="14.3"
     />
     <project title="Pagewide CSS classes"
-             release="13.2.0"
-             version="13.2"
+             release="14.0.0"
+             version="14.0"
              copyright="since 2015 by Sven Tappert"
     />
 </guides>
